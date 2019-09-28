@@ -1,14 +1,15 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Alert from 'react-bootstrap/Alert'
-import Button from 'react-bootstrap/Button'
-import FormGroup from './FormGroup'
-import FormSubmit from './FormSubmit'
-import cuid from 'cuid'
-import { setFormContent } from '../../actions'
 
+import React, { Component, PureComponent, useState } from 'react';
+import { connect } from 'react-redux'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Alert from 'react-bootstrap/Alert'
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
+import Textarea from 'react-textarea-autosize'
+import cuid from 'cuid'
+import { pushFormValue } from '../../actions'
 
 const alertStyle = {
 }
@@ -17,60 +18,35 @@ const buttonStyle = {
     padding: '0.4em 0em'
 }
 
-class ContentForm extends Component {
+class FormSubmit extends Component {
 
-    constructor(props) {
-        super(props)
-        this.hasError = false
+    state = {
+        validated: false,
     }
 
-    setContentFormData = (value, json, contentLoaded) => {
-        let entries = Object.entries(json);
-        entries.map((i) => {
-            if (contentLoaded == 'days') {
-                entries = this.filterbyFirst(i[1], value);
-            }
-            else if
-                (i[0] === value) {
-                entries = Object.entries(i[1]);
-            }
-        });
-
-        // promo in days.ini fix //
-        if (value === "calendar.newsletter") {
-            entries = Object.entries(json);
-            entries.map((i) => {
-                if (i[0] === value) {
-                    entries = Object.entries(i[1]);
-                }
-            })
-        }
-
-        this.props.dispatch(setFormContent(entries, value))
+    handleSubmit = event => {
         
-        return entries;
-    }
-
-    filterbyFirst = (pairs, n) => {
-        let array = [[], []];
-        Object.entries(pairs).map((i) => {
-            let j = (i[0].split("."));
-            if (j[0] == n) {
-                i[0] = j.splice(1, 4).join(".");
-                array.push(i);
-            }
+        let proposal = {};
+        event.preventDefault();
+        console.log(typeof event.target)
+        Object.values(event.target).map((i) => {
+            Object.assign(proposal, {[i.name]: i.value})
+            console.log(proposal)
         })
-        return array;
-    }
+        
 
 
-    static getDerivedStateFromError(error) {
-        return { hasError: error };
-    }
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.stopPropagation();
+        }
+        this.setState({validated: true});
+    };
 
     render() {
-        const FormTop = () => {
-            return (
+        console.log(this.props)
+        return (
+            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
                 <Row className="mt-1" key={cuid()}>
                     <Col md={6} key={cuid()}>
                         <Alert key={cuid()} variant="primary" size="md" style={alertStyle}>Submitting as: Andres Flanders</Alert>
@@ -80,21 +56,72 @@ class ContentForm extends Component {
                     </Col>
                     <Col md={2} key={cuid()}>
                         <div className="d-flex">
-                            <Button type="submit" key={cuid()} style={buttonStyle} size="md" variant="secondary" onClick={this.onClick} block>Submit</Button>
+                            <Button type="submit" key={cuid()} style={buttonStyle} size="md" variant="secondary" block>Submit</Button>
                         </div>
                     </Col>
                 </Row>
-            )
-        }
-
-
-        return (
-         <Fragment>
-            <FormTop/>
-            <FormSubmit/>
-         </Fragment>
-        )
+                <Form.Row>
+                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                        <Form.Label>First name</Form.Label>
+                        <Form.Control
+                            disabled
+                            required
+                            type="text"
+                            name="firstName"
+                            placeholder="First name"
+                            defaultValue={this.props.user.firstName} />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                        <Form.Label>Last name</Form.Label>
+                        <Form.Control
+                            disabled
+                            required
+                            type="text"
+                            placeholder="Last name"
+                            name="lastName"
+                            defaultValue={this.props.user.lastName} />
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                        <Form.Label>Member ID</Form.Label>
+                        <InputGroup>
+                            <Form.Control
+                                type="text"
+                                placeholder="memberID"
+                                name="memberID"
+                                aria-describedby="inputGroupPrepend"
+                                required />
+                            <Form.Control.Feedback type="invalid">
+                                Please choose a username.
+                            </Form.Control.Feedback>
+                        </InputGroup>
+                    </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                        <Form.Label>Supplier ID</Form.Label>
+                        <Form.Control type="text" name="supplierID" placeholder="supplierID" required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid city.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" controlId="validationCustom04">
+                        <Form.Label>Proposal ID</Form.Label>
+                        <Form.Control type="text" name="proposalID" placeholder="proposalID" required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid state.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Form.Row>
+            </Form>
+        );
     }
 }
 
-export default connect()(ContentForm)
+const mapsStateToProps = (state) => {
+    const { user } = state.authentication;
+    return { user }
+}
+
+export default connect(mapsStateToProps)(FormSubmit)

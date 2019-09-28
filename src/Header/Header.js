@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button'
 import navlogo from '../_media/images/logo.png'
 import cuid from 'cuid'
-import { userActions, getContentFocus, expandNav, closeNav } from '../_actions';
+import { userActions, getContentFocus, expandNav } from '../_actions';
 import { } from '../_actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -58,7 +58,7 @@ class Header extends Component {
                 style={navStyle}>
                 <button
                     onClick={this.props.expand}
-                    class="navbar-toggler"
+                    className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
@@ -135,7 +135,6 @@ const mapStateToProps = (state) => {
 }
 
 const actionCreators = {
-    close: closeNav,
     expand: expandNav,
     getFocus: getContentFocus,
     login: userActions.login,
