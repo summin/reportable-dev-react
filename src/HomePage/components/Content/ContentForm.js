@@ -9,7 +9,10 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import Textarea from 'react-textarea-autosize'
 import cuid from 'cuid'
-import { pushFormValue } from '../../actions'
+import { proposalActions } from '../../../_actions'
+import * {}
+
+
 
 const alertStyle = {
 }
@@ -28,23 +31,19 @@ class FormSubmit extends Component {
         
         let proposal = {};
         event.preventDefault();
-        console.log(typeof event.target)
         Object.values(event.target).map((i) => {
             Object.assign(proposal, {[i.name]: i.value})
-            console.log(proposal)
         })
-        
-
-
-        const form = event.currentTarget;
+        const form = event.target;
         if (form.checkValidity() === false) {
+            event.preventDefault();
             event.stopPropagation();
         }
-        this.setState({validated: true});
+        this.props.submit(proposal)
+
     };
 
     render() {
-        console.log(this.props)
         return (
             <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
                 <Row className="mt-1" key={cuid()}>
@@ -124,4 +123,9 @@ const mapsStateToProps = (state) => {
     return { user }
 }
 
-export default connect(mapsStateToProps)(FormSubmit)
+const actionCreators = {
+    submit: proposalActions.submit,
+};
+
+
+export default connect(mapsStateToProps, actionCreators)(FormSubmit)

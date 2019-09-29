@@ -35,18 +35,12 @@ class Header extends Component {
 
     constructor(props) {
         super(props);
-        this.closeMenu = this.closeMenu.bind(this);
     }
 
     onClickLogout = (e) => {
         return this.props.logout
     }
-
-    closeMenu(x) {
-        console.log('closeMenu')
-        return x
-    }
-
+    
     render() {
         console.log(this.props)
         return (
@@ -119,7 +113,7 @@ class Header extends Component {
                         id="basic-nav-dropdown">
                         <NavDropdown.Item href="#">Stats</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#">App View Settings</NavDropdown.Item>
+                        <NavDropdown.Item value="config" onClick={this.props.getFocus}>Config</NavDropdown.Item>
                         <NavDropdown.Item onClick={this.onClickLogout()}>Logout</NavDropdown.Item>
                     </NavDropdown>}
             </Navbar>

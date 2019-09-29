@@ -9,6 +9,7 @@ import ContentCalendar from './ContentCalendar'
 import ContentTodos from './ContentTodos'
 import ContentDashboard from './ContentDashboard'
 import ContentLanding from './ContentLanding'
+import ContentConfig from './ContentConfig'
 
 export default ({ ...props }) => {
     const { user, users } = props
@@ -41,6 +42,10 @@ export default ({ ...props }) => {
                         contentLoaded={props.contentLoaded} />}
                 {props.focus == "dashboard" &&
                     <ContentDashboard
+                        content={props.content}
+                        contentLoaded={props.contentLoaded} />}
+                {props.focus == "config" &&
+                    <ContentConfig
                         content={props.content}
                         contentLoaded={props.contentLoaded} />}
                 <Toast style={{

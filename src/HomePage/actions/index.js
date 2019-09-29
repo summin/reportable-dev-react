@@ -39,9 +39,12 @@ export const fetchAssets = () => dispatch => {
 //////////
 
 export const getContentFocus = (focus) => {
+
     return {
         type: CONTENT_FOCUS,
-        focus: focus.currentTarget.value,
+        focus: focus.currentTarget.value
+            ? focus.currentTarget.value
+            : focus.target.attributes.value.value,
     }
 }
 
@@ -94,9 +97,9 @@ const saveContentSuccess = () => {
 const saveContentAPI = () => dispatch => {
     console.log(JSON.stringify(store.getState().content.content))
     return fetch(API_URL_SAVE + "?" + JSON.stringify(store.getState().content.content), {
-        })
-        .then((response) =>  response.text())
-        .then((response) => {console.log(response)});
+    })
+        .then((response) => response.text())
+        .then((response) => { console.log(response) });
 }
 
 
