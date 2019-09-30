@@ -11,31 +11,25 @@ export default () => {
         <Fragment>
             <div className="overflowHidden">
                 <Row>
-                    <Col sm={3}></Col>
-                    <Col sm={6}>
+                    <Col sm={4}></Col>
+                    <Col sm={4}>
                         <figure classNme="figure" block>
                             <img src={navlogo} class="figure-img img-fluid rounded" alt="..." />
                         </figure>
 
                     </Col>
-                    <Col sm={3}></Col>
+                    <Col sm={4}></Col>
                 </Row>
                 <h1 className="text-center display-3 font-weight-lighter">proposals management and analytics console</h1>
                 <Row>
                     <Col sm={3}></Col>
-                    <Col sm={6} className = "persp100px">
-                
-                    <figure className="figure landingFXForm">
-                        <img src={landingFXForm} class="figure-img img-fluid rounded" alt="..." />
-                    </figure>
-
+                    <Col sm={6} className="persp100px">
+                        <figure className="figure landingFXForm">
+                            <img src={landingFXForm} class="figure-img img-fluid rounded" alt="..." />
+                        </figure>
                     </Col>
                     <Col sm={3}></Col>
                 </Row>
-
-
-
-
             </div>
         </Fragment>
 

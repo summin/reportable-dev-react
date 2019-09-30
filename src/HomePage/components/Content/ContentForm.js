@@ -12,9 +12,7 @@ import cuid from 'cuid'
 import { proposalActions } from '../../../_actions'
 import FormConfig from '../contentHelpers/submitFormConfig.json'
 
-const localFormSrc = [
 
-]
 
 let alert1, alert2;
 
@@ -60,23 +58,36 @@ class FormSubmit extends Component {
 
     render() {
 
+        const localFormSrc = (entry) => {
+            const entries = {
+                "dbRequestorFullName": this.props.user.firstName + " " + this.props.user.lastName,
+                "dbRequestorEmployeeID": this.props.user.username
+            }
+            if (entries[entry])
+                return entries[entry]
+            else return false
+        }
+
         const getGroups = (formConfig) => {
             let formGroups = []
             for (let key in formConfig) {
-                console.log(formConfig[key].gr)
                 if (formConfig[key].gr != formGroups[formGroups.length - 1])
                     formGroups.push(formConfig[key].gr)
             }
             return formGroups
         }
 
-        console.log(FormConfig)
+        const getOptions = (string) => {
+            let options = []
+            options = string.split(", ")
+            return options
+        }
 
         return (
-            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+            <Form className = "mb-4 pb-4" noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
 
                 <Row className="mt-1" key={cuid()}>
-                    <Col md={10}> 
+                    <Col md={10}>
                         <h5>Please, fill and submit proposal for further review...</h5>
                     </Col>
                     <Col md={2} key={cuid()}>
@@ -103,95 +114,51 @@ class FormSubmit extends Component {
                                 <Form.Label
                                     style={labelStyle}>
                                     <span className="mr-4" style={labelSpanStyle}>{FormConfig[j].name}</span></Form.Label>
-                                {FormConfig[j].type == "drop-down" &&
-                                    <Form.Control
-                                        as="select"
-                                        name={j}
-                                        placeholder="-"
-                                        required />}
-                                {FormConfig[j].type == "text" &&
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="-"
-                                        name={j}
-                                        aria-describedby="inputGroupPrepend"
-                                        required />}
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid entry.
+                                <InputGroup>
+                                {FormConfig[j].prepend &&
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroupPrepend">{FormConfig[j].prepend}</InputGroup.Text>
+                                    </InputGroup.Prepend>}
+                                    {FormConfig[j].type == "text" &&
+                                        <Form.Control
+                                            type="text"
+                                            disabled={localFormSrc(j) ? true : false}
+                                            placeholder="-"
+                                            name={j}
+                                            defaultValue={localFormSrc(j) ? localFormSrc(j) : ""}
+                                            aria-describedby="inputGroupPrepend"
+                                            required />}
+                                    {FormConfig[j].type == "drop-down" &&
+                                        <Form.Control
+                                            as="select"
+                                            name={j}
+                                            required>
+                                            {getOptions(FormConfig[j].options).map((k) => (
+                                                <option>{k}</option>
+                                            ))}
+                                        </Form.Control>}
+                                </InputGroup>
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a valid entry.
                                     </Form.Control.Feedback>
                             </Form.Group>
-                            ))
-                            }
+                        ))
+                        }
                     </Form.Row>
-                        ))}
-
-                        <Form.Row>
-                            <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                <Form.Label>First name</Form.Label>
-                                <Form.Control
-                                    disabled
-                                    required
-                                    type="text"
-                                    name="firstName"
-                                    placeholder="First name"
-                                    defaultValue={this.props.user.firstName} />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                <Form.Label>Last name</Form.Label>
-                                <Form.Control
-                                    disabled
-                                    required
-                                    type="text"
-                                    placeholder="Last name"
-                                    name="lastName"
-                                    defaultValue={this.props.user.lastName} />
-                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                <Form.Label>Member ID</Form.Label>
-                                <InputGroup>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="memberID"
-                                        name="memberID"
-                                        aria-describedby="inputGroupPrepend"
-                                        required />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please choose a username.
-                            </Form.Control.Feedback>
-                                </InputGroup>
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                <Form.Label>Supplier ID</Form.Label>
-                                <Form.Control type="text" name="supplierID" placeholder="supplierID" required />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid city.
-                        </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="validationCustom04">
-                                <Form.Label>Proposal ID</Form.Label>
-                                <Form.Control type="text" name="proposalID" placeholder="proposalID" required />
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid state.
-                        </Form.Control.Feedback>
-                            </Form.Group>
-                        </Form.Row>
+                ))}
             </Form>
-                );
-                }
-            }
-            
+        );
+    }
+}
+
 const mapsStateToProps = (state) => {
-    const {user} = state.authentication;
-    return {user}
-                }
-                
+    const { user } = state.authentication;
+    return { user }
+}
+
 const actionCreators = {
-                    submit: proposalActions.submit,
-            };
-            
-            
+    submit: proposalActions.submit,
+};
+
+
 export default connect(mapsStateToProps, actionCreators)(FormSubmit)

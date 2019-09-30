@@ -334,7 +334,7 @@
         "prepend": "",
         "w": 6,
         "type": "drop-down",
-        "options": "1, 2, 3, 4, ",
+        "options": "1, 2, 3, 4",
         "gr": 170,
         "xgr": 1,
         "comments": "Selection from all business functions"
