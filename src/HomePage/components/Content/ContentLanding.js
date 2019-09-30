@@ -1,40 +1,44 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import navlogo from '../../../_media/images/logo.png'
+import landingFXForm from '../../../_media/images/landingFXForm.png'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 import ReactDOM from 'react-dom';
 import Table from 'react-bootstrap/Table'
-// import BarChart from './d3/BarChart'
 
 export default () => {
     return (
+        <Fragment>
+            <div className="overflowHidden">
+                <Row>
+                    <Col sm={3}></Col>
+                    <Col sm={6}>
+                        <figure classNme="figure" block>
+                            <img src={navlogo} class="figure-img img-fluid rounded" alt="..." />
+                        </figure>
 
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>Bar</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td colSpan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </Table>
+                    </Col>
+                    <Col sm={3}></Col>
+                </Row>
+                <h1 className="text-center display-3 font-weight-lighter">proposals management and analytics console</h1>
+                <Row>
+                    <Col sm={3}></Col>
+                    <Col sm={6} className = "persp100px">
+                
+                    <figure className="figure landingFXForm">
+                        <img src={landingFXForm} class="figure-img img-fluid rounded" alt="..." />
+                    </figure>
+
+                    </Col>
+                    <Col sm={3}></Col>
+                </Row>
+
+
+
+
+            </div>
+        </Fragment>
+
     )
 }
 

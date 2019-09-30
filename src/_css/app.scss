@@ -11,6 +11,7 @@ body, html {
 }
 
 @import "Header";
+@import "fx";
 @import "./bootstrap/bootstrap";
 
 .nav-item  a {
@@ -36,6 +37,10 @@ a {
 .overflowscroll {
     height: 84vh;
     overflow-y: scroll !important;
+}
+
+.overflowHidden {
+    overflow: hidden;
 }
 
 @media (max-width: 575px){

@@ -13,15 +13,20 @@ class Content extends Component {
     render() {
         return (
             <Container fluid={true}>
-                <Row className = "mt-1">
-                    <ContentViewLeft
+                <Row className="mt-1">
+                    {this.props.focus && <ContentViewLeft
                         contentLoaded={this.props.contentLoaded}
                         content={this.props.content}
-                        focus={this.props.focus} />
+                        focus={this.props.focus} />}
                     <ContentViewCenter
                         contentLoaded={this.props.contentLoaded}
                         content={this.props.content}
-                        focus={this.props.focus}/>
+                        focus={this.props.focus} />
+                    {this.props.focus &&
+                        <ContentViewRight
+                            contentLoaded={this.props.contentLoaded}
+                            content={this.props.content}
+                            focus={this.props.focus} />}
                 </Row>
             </Container>
         )

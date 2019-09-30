@@ -11,13 +11,9 @@ return (
     props.focus !== "dashboard" && (
     <Col lg={2}>
         <div className="ml-2 mr-2 mt-4 mt-lg-0 shadow p-3 pt-0 pb-0 mb-0 bg-white">
-            <h5>Recent Actions:
-                        </h5>
-            <div className="dashboard">
-                {logged &&
-                    <p className="status">Logged In 6</p>}
-                <p>{name} {email} API 1host variable {__API_HOST__} </p>
-            </div>
+            <h6>Events:</h6>
+            <p>- Please, fill in the form</p>
+
         </div>
     </Col>)
     )

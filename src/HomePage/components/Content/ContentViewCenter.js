@@ -15,7 +15,7 @@ export default ({ ...props }) => {
     const { user, users } = props
     return (
         <Fragment>
-            <Col lg={7}>
+            <Col lg={props.focus ? 7 : 12}>
                 {props.focus == "" &&
                     <ContentLanding
                         content={props.content}
