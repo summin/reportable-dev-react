@@ -26,14 +26,11 @@ class App extends React.Component {
                 <Fragment>
                     <Header />
                     <PrivateRoute exact path="/" component={HomePage} />
-                    <div className="ml-auto mr-auto col-sm-12">
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
-
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegisterPage} />
-                    </div>
                 </Fragment>
             </Router>
         );

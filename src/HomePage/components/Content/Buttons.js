@@ -9,37 +9,23 @@ import {getContentFocus} from '../../actions'
 const buttons = ({ ...props }) => {
 
     let group = [];
-    let sections = [];
-
-    // getting ini sections names
-    Object.entries(props.content).map((i) => {
-        sections.push(i[0]);
-    })
+    let sections = ["Save Template", "Load Template"];
 
     const buttonRow = (n, s) => {
         const buttons = [];
-        let i, r, label;
+        let i, label;
         const generate = () => {
-            (props.contentLoaded == "days") ? r = 7 : r = 2;
-            for (i = 1; i < r; ++i) {
-                (props.contentLoaded == "days") ? label = (i + n) : label = sections[n];
-
-                // promo in days.ini fix //
-                if (props.contentLoaded == "days" && n == 24) {
-                    label = sections[0];
-                    r = 1;
-                }
-                //
-
+            for (i = 1; i < 2; ++i) {
+                label = sections[n]
                 buttons.push(
                     <Button
                         key={cuid()}
                         className="mt-1 border btn-responsive"
-                        size="lg"
+                        size="sm"
                         variant="light"
                         block
                         value={label}
-                        onClick={(e) => props.dispatch(getContentFocus(e, props.content, props.contentLoaded))}>
+                        onClick="a">
                         {label}
                     </Button>)
             }

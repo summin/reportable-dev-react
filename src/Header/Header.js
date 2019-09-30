@@ -85,9 +85,9 @@ class Header extends Component {
                                 className="ml-1 mr-1 navbtn"
                                 variant="nav-btn"
                                 size="sm"
-                                value="approvals"
+                                value="proposals"
                                 onClick={this.props.getFocus}>
-                                <div className="d-inline"><FontAwesomeIcon icon={faCheck} size="lg" /> Approvals </div>
+                                <div className="d-inline"><FontAwesomeIcon icon={faCheck} size="lg" /> Proposals </div>
                             </Button>
                             <Button
                                 key={cuid()}
@@ -111,9 +111,9 @@ class Header extends Component {
                             </div>
                         }
                         id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#">Stats</NavDropdown.Item>
+                        <NavDropdown.Item href="#">User Stats</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item value="config" onClick={this.props.getFocus}>Config</NavDropdown.Item>
+                        <NavDropdown.Item value="config" onClick={this.props.getFocus}>App Config</NavDropdown.Item>
                         <NavDropdown.Item onClick={this.onClickLogout()}>Logout</NavDropdown.Item>
                     </NavDropdown>}
             </Navbar>

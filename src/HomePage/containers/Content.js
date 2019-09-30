@@ -22,10 +22,6 @@ class Content extends Component {
                         contentLoaded={this.props.contentLoaded}
                         content={this.props.content}
                         focus={this.props.focus}/>
-                    <ContentViewRight
-                        contentLoaded={this.props.contentLoaded}
-                        content={this.props.content}
-                        focus={this.props.focus} />
                 </Row>
             </Container>
         )

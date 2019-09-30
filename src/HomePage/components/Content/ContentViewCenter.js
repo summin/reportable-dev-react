@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import Col from 'react-bootstrap/Col'
 import Toast from 'react-bootstrap/Toast'
 import ContentForm from './ContentForm'
-import ContentApprovals from './ContentApprovals'
+import ContentProposals from './ContentProposals'
 import ContentMessaging from './ContentMessaging'
 import ContentCalendar from './ContentCalendar'
 import ContentTodos from './ContentTodos'
@@ -29,7 +29,7 @@ export default ({ ...props }) => {
                         content={props.content}
                         contentLoaded={props.contentLoaded} />}
                 {props.focus == "approvals" &&
-                    <ContentApprovals
+                    <ContentProposals
                         content={props.content}
                         contentLoaded={props.contentLoaded} />}
                 {props.focus == "calendar" &&
