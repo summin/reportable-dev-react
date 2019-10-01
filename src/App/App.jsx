@@ -23,7 +23,7 @@ class App extends React.Component {
         const { alert } = this.props;
         return (
             <Router history={history}>
-                <Fragment>
+                <div>
                     <Header />
                     <PrivateRoute exact path="/" component={HomePage} />
                         {alert.message &&
@@ -31,7 +31,7 @@ class App extends React.Component {
                         }
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegisterPage} />
-                </Fragment>
+                </div>
             </Router>
         );
     }

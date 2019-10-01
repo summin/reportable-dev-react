@@ -34,6 +34,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
+        console.log("LoginPageRendered")
         const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
         return (
@@ -59,7 +60,7 @@ class LoginPage extends React.Component {
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
                         {loggingIn &&
-                            <Spinner animation="border" size="sm" />
+                            <Spinner className = "ml-3"animation="border" size="sm" />
                         }
                         <Link to="/register" className="btn btn-link">Register</Link>
                     </div>

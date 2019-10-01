@@ -8,7 +8,7 @@ export const proposalActions = {
 };
 
 function submit(proposal) {
-    console.log(proposal)
+
     return dispatch => {
         dispatch(request());
 
@@ -20,6 +20,6 @@ function submit(proposal) {
     };
 
     function request() { return { type: proposalConstants.SUBMIT_REQUEST } }
-    function success(users) { return { type: proposalConstants.SUBMIT_SUCCESS, users } }
+    function success(proposal) { return { type: proposalConstants.SUBMIT_SUCCESS, proposal } }
     function failure(error) { return { type: proposalConstants.SUBMIT_FAILURE, error } }
 }

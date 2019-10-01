@@ -64,12 +64,6 @@ export const content = (state = {}, action) => {
         default:
             return {
                 ...state,
-                collapse: false,
-                content: "",
-                focus: "",
-                contentLoaded: false,
-                formGroupContent: "",
-                formFocus: ""
             }
     }
 }

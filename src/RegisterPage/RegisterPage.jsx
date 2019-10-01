@@ -44,6 +44,7 @@ class RegisterPage extends React.Component {
     }
 
     render() {
+        console.log("RegisterPageRendered")
         const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (

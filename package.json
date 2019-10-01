@@ -18,6 +18,7 @@
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
+    "history": "^4.6.3",
     "immutable": "^4.0.0-rc.12",
     "mdbreact": "^4.20.0",
     "moment": "^2.24.0",
@@ -33,13 +34,12 @@
     "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.3",
-    "react-redux": "^7.1.0",
-    "react-router-dom": "^4.3.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
     "react-textarea-autosize": "^7.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "history": "^4.6.3"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
