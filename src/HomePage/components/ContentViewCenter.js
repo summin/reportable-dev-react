@@ -1,7 +1,6 @@
 import React from 'react';
 import { Fragment } from 'react';
 import Col from 'react-bootstrap/Col'
-import Toast from 'react-bootstrap/Toast'
 import ContentForm from './ContentForm'
 import ContentProposals from './ContentProposals'
 import ContentMessaging from './ContentMessaging'
@@ -47,18 +46,7 @@ export default ({ ...props }) => {
                     <ContentConfig
                         content={props.content}
                         contentLoaded={props.contentLoaded} />}
-                <Toast style={{
-                    position: 'fixed',
-                    bottom: 30,
-                    right: 10,
-                }}>
-                    <Toast.Header>
-                        <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                        <strong className="mr-auto">New Request... </strong>
-                        <small>11 mins ago</small>
-                    </Toast.Header>
-                    <Toast.Body>Notifications about the most recent events</Toast.Body>
-                </Toast>
+
             </Col>
         </Fragment>
     )

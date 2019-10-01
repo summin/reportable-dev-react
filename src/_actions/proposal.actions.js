@@ -14,12 +14,18 @@ function submit(proposal) {
 
         proposalService.submit(proposal)
             .then(
-                proposal => dispatch(success(proposal)),
-                error => dispatch(failure(error.toString()))
+                proposal => {
+                    dispatch(success(proposal))
+                },
+
+                error => {
+                    dispatch(failure(error.toString())),
+                    dispatch(alertActions.error(error.toString()));
+                }
             );
     };
 
-    function request() { return { type: proposalConstants.SUBMIT_REQUEST } }
+    function request() { return { type: proposalConstants.SUBMIT_REQUEST, proposal } }
     function success(proposal) { return { type: proposalConstants.SUBMIT_SUCCESS, proposal } }
     function failure(error) { return { type: proposalConstants.SUBMIT_FAILURE, error } }
 }

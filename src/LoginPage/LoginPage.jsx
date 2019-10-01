@@ -42,6 +42,9 @@ class LoginPage extends React.Component {
             <div className=" ml-auto mr-auto col-md-3">
                 {this.props.loggedIn && <Redirect to='/'></Redirect>}
                 <h2>Login</h2>
+                {alert.message &&
+                            <div className={`alert ${alert.type}`}>{alert.message}</div>
+                        }
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
@@ -71,9 +74,10 @@ class LoginPage extends React.Component {
 }
 
 function mapState(state) {
+    const { alert } = state;
     const { loggingIn } = state.authentication;
     const loggedIn = state.authentication.loggedIn;
-    return { loggingIn, loggedIn };
+    return { loggingIn, loggedIn, alert };
 }
 
 const actionCreators = {

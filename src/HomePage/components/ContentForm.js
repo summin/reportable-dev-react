@@ -15,9 +15,6 @@ import FormConfig from './contentHelpers/submitFormConfig.json'
 
 let alert1, alert2;
 
-const alertStyle = {
-}
-
 const buttonStyle = {
     padding: '0.4em 0em'
 }
@@ -29,7 +26,6 @@ const labelStyle = {
 const labelSpanStyle = {
     position: "absolute",
     bottom: "50px",
-    fontSize: "1.6ex"
 }
 
 class FormSubmit extends Component {
@@ -79,12 +75,19 @@ class FormSubmit extends Component {
             return options
         }
 
+        let alert = this.props.alert;
+
         return (
             <Form className="mb-4 pb-4" noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
 
                 <Row className="mt-1" key={cuid()}>
                     <Col md={10} key={cuid()}>
-                        <Alert key={cuid()} variant="primary" size="md" style={alertStyle}>Please, fill and submit proposal for further review...</Alert>
+                        <Alert key={cuid()} variant={alert.type ? alert.type : "primary"} size="md">
+                        {alert.message 
+                            ? alert.message
+                            : "Please, fill and submit proposal for further review..."
+                        }
+                        </Alert>
                     </Col>
                     <Col md={2} key={cuid()}>
                         <div className="d-flex">
@@ -106,10 +109,10 @@ class FormSubmit extends Component {
                     <Form.Row key={cuid()}>
                         {Object.keys(FormConfig).map((j) => (
                             (FormConfig[j].gr == i) &&
-                            <Form.Group key={j} as={Col} md={FormConfig[j].w} controlId="validationCustom03">
+                            <Form.Group key={j} as={Col} sm={FormConfig[j].w} controlId="validationCustom03">
                                 <Form.Label
                                     style={labelStyle}>
-                                    <span className="mr-4" style={labelSpanStyle}>{FormConfig[j].name}</span></Form.Label>
+                                    <span className="mr-4" style={labelSpanStyle}><small><strong>{FormConfig[j].name}</strong></small></span></Form.Label>
                                 <InputGroup>
                                     {FormConfig[j].prepend &&
                                         <InputGroup.Prepend>
@@ -121,7 +124,12 @@ class FormSubmit extends Component {
                                             disabled={localFormSrc(j) ? true : false}
                                             placeholder="-"
                                             name={j}
-                                            defaultValue={localFormSrc(j) ? localFormSrc(j) : j}
+                                            defaultValue={(localFormSrc(j) ? localFormSrc(j)
+                                                : (FormConfig[j].prepend == "$") ? (Math.floor(Math.random() * 100000)) 
+                                                : (FormConfig[j].prepend == "%") ? (Math.floor(Math.random() * 100))
+                                                : (FormConfig[j].prepend == "months") ? (Math.floor(Math.random() * 60))
+                                                : (j == "dbContractReferenceNumber") ? (Math.floor(Math.random() * 10000))
+                                                : j)}
                                             aria-describedby="inputGroupPrepend"
                                             required />}
                                     {FormConfig[j].type == "drop-down" &&
@@ -148,11 +156,13 @@ class FormSubmit extends Component {
 }
 
 const mapsStateToProps = (state) => {
+    const { alert } = state;
     const { user } = state.authentication;
-    return { user }
+    return { user, alert }
 }
 
 const actionCreators = {
+    
     submit: proposalActions.submit,
 };
 

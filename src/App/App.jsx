@@ -26,9 +26,6 @@ class App extends React.Component {
                 <div>
                     <Header />
                     <PrivateRoute exact path="/" component={HomePage} />
-                        {alert.message &&
-                            <div className={`alert ${alert.type}`}>{alert.message}</div>
-                        }
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegisterPage} />
                 </div>
@@ -38,9 +35,8 @@ class App extends React.Component {
 }
 
 function mapState(state) {
-    const { alert } = state;
     const { loggingOut } = state.authentication;
-    return { alert, loggingOut };
+    return { loggingOut };
 }
 
 const actionCreators = {

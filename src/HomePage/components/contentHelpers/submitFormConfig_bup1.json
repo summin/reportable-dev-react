@@ -72,7 +72,7 @@
     "dbDateofRequest": {
         "name": "Date of Request",
         "prepend": "",
-        "w": 6,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 40,
@@ -82,7 +82,7 @@
     "dbSpendType": {
         "name": "Spend Type",
         "prepend": "",
-        "w": 6,
+        "w": 3,
         "type": "drop-down",
         "options": "Hardware, Software, Services, Cloud Services, Maintenance",
         "gr": 40,
@@ -92,7 +92,7 @@
     "dbContractReferenceNumber": {
         "name": "Contract Reference Number",
         "prepend": "",
-        "w": 6,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 40,
@@ -102,7 +102,7 @@
     "dbITCommodityCategory": {
         "name": "IT Commodity Category",
         "prepend": "",
-        "w": 6,
+        "w": 3,
         "type": "drop-down",
         "options": "Enterprise Services, Telecoms, IT, etc",
         "gr": 40,
@@ -122,7 +122,7 @@
     "dbSpendTaxonomy": {
         "name": "Spend Taxonomy",
         "prepend": "",
-        "w": 4,
+        "w": 6,
         "type": "text",
         "options": "",
         "gr": 60,
@@ -132,7 +132,7 @@
     "dbBudgetIdentificationnumber": {
         "name": "Budget Identification number",
         "prepend": "",
-        "w": 4,
+        "w": 6,
         "type": "text",
         "options": "",
         "gr": 60,
@@ -142,17 +142,17 @@
     "dbIsthereaninflationintherenewal": {
         "name": "Is there an inflation in the renewal ?",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "drop-down",
         "options": "Yes, No",
-        "gr": 60,
+        "gr": 70,
         "xgr": 1,
         "comments": "Yes/No"
     },
     "dbInflationjustification": {
         "name": "Inflation justification",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 70,
@@ -162,7 +162,7 @@
     "dbProcurementContact": {
         "name": "Procurement Contact ",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 70,
@@ -172,7 +172,7 @@
     "dbProcurementCasenumber": {
         "name": "Procurement Case number ",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 70,
@@ -267,7 +267,7 @@
         "options": "",
         "gr": 140,
         "xgr": 1,
-        "comments": "Numeric value 1-60"
+        "comments": "Numeric value"
     },
     "dbHasamultiyeardealbeenconsidered": {
         "name": "Has a multiyear deal been considered?",
@@ -300,12 +300,12 @@
         "comments": "This needs to be linked to the ZBB and ideally cross-checking utilisation of budget lines that allows avoidance of duplicate lines being claimed by different projects"
     },
     "dbIsthereaHeadwindasaresultofthisinitiative": {
-        "name": "Is there a Headwind as a result of this initiative",
+        "name": "Is there a Headwind as a result of this initiative?",
         "prepend": "",
-        "w": 12,
+        "w": 6,
         "type": "drop-down",
         "options": "Yes, No",
-        "gr": 160,
+        "gr": 170,
         "xgr": 1,
         "comments": "Yes/No"
     },
@@ -334,7 +334,7 @@
         "prepend": "",
         "w": 6,
         "type": "drop-down",
-        "options": "1, 2, 3, 4, ",
+        "options": "1, 2, 3, 4",
         "gr": 170,
         "xgr": 1,
         "comments": "Selection from all business functions"
@@ -351,7 +351,7 @@
     },
     "dbPrevious12monthscontractvalue": {
         "name": "Previous 12 months contract value ",
-        "prepend": "$",
+        "prepend": "",
         "w": 6,
         "type": "text",
         "options": "",
