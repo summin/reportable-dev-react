@@ -14,8 +14,10 @@ function submit(proposal) {
 
         proposalService.submit(proposal)
             .then(
-                proposal => {
-                    dispatch(success(proposal))
+                res => {
+                    dispatch(success(res));
+                    dispatch(alertActions.clear());
+                    dispatch(alertActions.success(`Proposal N° ${proposal.dbContractReferenceNumber} Submitted`));
                 },
 
                 error => {

@@ -65,6 +65,11 @@ a {
 word-wrap: break-word;
 }
 
+input:invalid {
+    border: 3px solid red;
+  }
+
+
 @include media-breakpoint-down(sm) {
     .navbtn {
         margin: 3px;

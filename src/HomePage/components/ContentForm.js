@@ -11,6 +11,7 @@ import Textarea from 'react-textarea-autosize'
 import cuid from 'cuid'
 import { proposalActions } from '../../_actions'
 import FormConfig from './contentHelpers/submitFormConfig.json'
+import Spinner from 'react-bootstrap/Spinner'
 
 
 let alert1, alert2;
@@ -32,18 +33,26 @@ class FormSubmit extends Component {
 
     state = {
         validated: false,
+        formError: false
     }
 
     handleSubmit = event => {
-        event.preventDefault()
+
         let proposal = {}
         Object.values(event.target).map((i) => {
             Object.assign(proposal, { [i.name]: i.value })
         })
-        if (event.target.checkValidity() === false) {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            this.setState({ formError: true })
+            event.preventDefault()
             event.stopPropagation();
+            
         }
-        this.props.submit(proposal)
+        else {
+            event.preventDefault()
+            this.props.submit(proposal)
+        }
     };
 
     render() {
@@ -53,7 +62,8 @@ class FormSubmit extends Component {
         const localFormSrc = (entry) => {
             const entries = {
                 "dbRequestorFullName": this.props.user.firstName + " " + this.props.user.lastName,
-                "dbRequestorEmployeeID": this.props.user.username
+                "dbRequestorEmployeeID": this.props.user.username,
+                "dbDateofRequest": (new Date).toLocaleDateString('en-GB')
             }
             if (entries[entry])
                 return entries[entry]
@@ -75,18 +85,16 @@ class FormSubmit extends Component {
             return options
         }
 
-        let alert = this.props.alert;
+        let { proposals, alert } = this.props;
 
         return (
-            <Form className="mb-4 pb-4" noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
-
+            <Form className="mb-4 pb-4" validated={this.state.validated} onSubmit={this.handleSubmit}>
                 <Row className="mt-1" key={cuid()}>
                     <Col md={10} key={cuid()}>
-                        <Alert key={cuid()} variant={alert.type ? alert.type : "primary"} size="md">
-                        {alert.message 
-                            ? alert.message
-                            : "Please, fill and submit proposal for further review..."
-                        }
+                        <Alert className="d-flex justify-content-between" variant={alert.type ? alert.type : "primary"} size="md">
+                            {   this.state.formError ? "Please, fill all the fields in the form!" :
+                                alert.message ? alert.message : <span>"Please, fill and submit proposal for further review..."</span>}
+                            {proposals.loading && <Spinner className="mt-1" animation="border" size="sm" />}
                         </Alert>
                     </Col>
                     <Col md={2} key={cuid()}>
@@ -122,14 +130,14 @@ class FormSubmit extends Component {
                                         <Form.Control
                                             type="text"
                                             disabled={localFormSrc(j) ? true : false}
-                                            placeholder="-"
                                             name={j}
                                             defaultValue={(localFormSrc(j) ? localFormSrc(j)
-                                                : (FormConfig[j].prepend == "$") ? (Math.floor(Math.random() * 100000)) 
-                                                : (FormConfig[j].prepend == "%") ? (Math.floor(Math.random() * 100))
-                                                : (FormConfig[j].prepend == "months") ? (Math.floor(Math.random() * 60))
-                                                : (j == "dbContractReferenceNumber") ? (Math.floor(Math.random() * 10000))
-                                                : j)}
+                                                : (FormConfig[j].prepend == "$") ? (Math.floor(Math.random() * 100000))
+                                                    : (FormConfig[j].prepend == "%") ? (Math.floor(Math.random() * 100))
+                                                        : (FormConfig[j].prepend == "months") ? (Math.floor(Math.random() * 60))
+                                                            : (FormConfig[j].prepend == "@") ? (Math.floor(Math.random() * 10) + "@constreturn.com")
+                                                                : (j == "dbContractReferenceNumber") ? (Math.floor(Math.random() * 10000))
+                                                                    : j)}
                                             aria-describedby="inputGroupPrepend"
                                             required />}
                                     {FormConfig[j].type == "drop-down" &&
@@ -141,10 +149,11 @@ class FormSubmit extends Component {
                                                 <option key={k}>{k}</option>
                                             ))}
                                         </Form.Control>}
-                                </InputGroup>
-                                <Form.Control.Feedback type="invalid">
-                                    Please provide a valid entry.
+                                    <Form.Control.Feedback type="invalid">
+                                        Please provide a valid entry.
                                     </Form.Control.Feedback>
+                                </InputGroup>
+
                             </Form.Group>
                         ))
                         }
@@ -156,13 +165,13 @@ class FormSubmit extends Component {
 }
 
 const mapsStateToProps = (state) => {
-    const { alert } = state;
+    const { alert, proposals } = state;
     const { user } = state.authentication;
-    return { user, alert }
+    return { user, alert, proposals }
 }
 
 const actionCreators = {
-    
+
     submit: proposalActions.submit,
 };
 

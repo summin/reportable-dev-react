@@ -36,15 +36,16 @@ class LoginPage extends React.Component {
     render() {
         console.log("LoginPageRendered")
         const { loggingIn } = this.props;
+        let alert = this.props.alert;
         const { username, password, submitted } = this.state;
         return (
- 
+
             <div className=" ml-auto mr-auto col-md-3">
                 {this.props.loggedIn && <Redirect to='/'></Redirect>}
                 <h2>Login</h2>
                 {alert.message &&
-                            <div className={`alert ${alert.type}`}>{alert.message}</div>
-                        }
+                    <div className={`alert alert-${alert.type}`}>{alert.message}</div>
+                }
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
@@ -63,7 +64,7 @@ class LoginPage extends React.Component {
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
                         {loggingIn &&
-                            <Spinner className = "ml-3"animation="border" size="sm" />
+                            <Spinner className="ml-3" animation="border" size="sm" />
                         }
                         <Link to="/register" className="btn btn-link">Register</Link>
                     </div>
