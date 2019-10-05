@@ -23,28 +23,28 @@ function ContentApprovals({ ...props }) {
         {
             id: 'dbProjectorInitiativeTitle',
             label: 'Project or Initiative Title',
-            minWidth: 80,
+            minWidth: 120,
         },
         {
             id: 'dbContractReferenceNumber',
             label: 'Contract Reference Number',
-            minWidth: '10px',
+            minWidth: 60,
         },
         {
             id: 'dbDateOfRequest',
             label: 'Date of Request',
-            minWidth: 80,
+            minWidth: 100,
         },
         {
             id: 'dbRequestorFullName',
             label: 'Requestor Full Name',
-            minWidth: 80,
+            minWidth: 120,
 
         },
         {
             id: 'dbITCommodityCategory',
             label: 'IT Commodity Category',
-            minWidth: 80,
+            minWidth: 120,
         },
 
     ];
@@ -80,28 +80,17 @@ function ContentApprovals({ ...props }) {
     const useStyles = makeStyles({
         root: {
             width: '100%',
-            flexGrow: 1,
-            marginBottom: '70px',
-            marginTop: '5px'
+            flexGrow: 1
         },
         tableWrapper: {
             maxHeight: "100%",
             overflow: 'auto',
-            cursor: 'pointer'
         },
-        pagination: {
-            width: '100%',
-            position: 'fixed',
-            bottom: '0',
-            right: '0',
-            backgroundColor: "rgb(133, 126, 126)"
-        },
-        
     });
 
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(20);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     function handleChangePage(event, newPage) {
         setPage(newPage);
@@ -110,10 +99,6 @@ function ContentApprovals({ ...props }) {
     function handleChangeRowsPerPage(event) {
         setRowsPerPage(+event.target.value);
         setPage(0);
-    }
-
-    const onClick = (e) => {
-        console.log(e.target.attributes.value)
     }
 
     return (
@@ -128,7 +113,7 @@ function ContentApprovals({ ...props }) {
                             <LinearProgress color="primary" />
                         </div>
                         :
-                        <TableHead  className="cursorDefault">
+                        <TableHead>
                             <TableRow>
                                 {columns.map(column => (
                                     <TableCell
@@ -143,12 +128,12 @@ function ContentApprovals({ ...props }) {
                         </TableHead>}
                         <TableBody>
                             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
-                                return (
-                                    <TableRow  onClick={onClick} hover role="checkbox" tabIndex={-1} key={row.code}>
+                                return (<a href="">
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                         {columns.map(column => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell className="cursorHand" key={column} value={row.dbContractReferenceNumber} align={column.align}>
+                                                <TableCell key={column.id} align={column.align}>
                                                     {column.format && typeof value === 'number' ? column.format(value) : value}
                                                     
                                                 </TableCell>
@@ -156,14 +141,13 @@ function ContentApprovals({ ...props }) {
                                             );
                                         })}
                                     </TableRow>
-                                
+                                    </a>
                                 );
                             })}
                         </TableBody>
                     </Table>
                 </div>
                 <TablePagination
-                    className={classes.pagination}
                     rowsPerPageOptions={[10, 20]}
                     component="div"
                     count={rows.length}

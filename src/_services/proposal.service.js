@@ -3,7 +3,7 @@ import { authHeader } from '../_helpers';
 
 export const proposalService = {
     submit,
-    getSome
+    get
 };
 
 function submit(proposal) {
@@ -12,16 +12,17 @@ function submit(proposal) {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(proposal)
     };
-    return fetch(`${config.apiUrl}/proposals/submit`, requestOptions).then(handleResponse);;
+    return fetch(`${config.apiUrl}/proposals/submit`, requestOptions).then(handleResponse);
 }
 
-function getSome(id) {
+function get(attr) {
+    
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/proposals/get${attr}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

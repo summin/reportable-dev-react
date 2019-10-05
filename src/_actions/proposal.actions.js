@@ -5,7 +5,36 @@ import { history } from '../_helpers';
 
 export const proposalActions = {
     submit,
+    get
 };
+
+// get
+
+function get(attr) {
+    return dispatch => {
+        dispatch(request());
+
+        proposalService.get(attr)
+            .then(
+                res => {
+                    dispatch(success(res));
+                    dispatch(alertActions.clear());
+                    dispatch(alertActions.success(`Received ${res.length} items`));
+                },
+
+                error => {
+                    dispatch(failure(error.toString())),
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: proposalConstants.GET_REQUEST } }
+    function success(res) { return { type: proposalConstants.GET_SUCCESS, res } }
+    function failure(error) { return { type: proposalConstants.GET_FAILURE, error } }
+}
+
+// SUBMIT
 
 function submit(proposal) {
 

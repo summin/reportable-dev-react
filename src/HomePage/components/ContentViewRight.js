@@ -10,7 +10,7 @@ const InfoBoard = ({ ...props }) => {
     const { logged, name, email } = myApp
 
     return (
-        props.focus !== "dashboard" && (
+        (props.focus !== "dashboard") && (props.focus !== "proposals") && (
             <Col lg={2}>
                 <div className="ml-2 mr-2 mt-4 mt-lg-0 shadow p-3 pt-0 pb-0 mb-0 bg-white">
                     <h6>Events:</h6>
@@ -23,7 +23,6 @@ const InfoBoard = ({ ...props }) => {
             </Col>)
     )
 }
-
 
 function mapState(state) {
     const { alert } = state;

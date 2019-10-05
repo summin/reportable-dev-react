@@ -65,10 +65,18 @@ a {
 word-wrap: break-word;
 }
 
-input:invalid {
-    border: 3px solid red;
-  }
+.cursorHand {
+    cursor: hand;
+}
 
+.cursorDefault {
+    cursor: default;
+}
+
+.fixedBottom {
+    position: fixed;
+    bottom: 0
+}
 
 @include media-breakpoint-down(sm) {
     .navbtn {

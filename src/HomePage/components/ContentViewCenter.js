@@ -13,7 +13,7 @@ export default ({ ...props }) => {
     const { user, users } = props
     return (
         <Fragment>
-            <Col className = "overflowscroll" lg={props.focus ? 7 : 12}>
+            <Col className = "overflowscroll" lg={(!props.focus || (props.focus === "dashboard") || (props.focus === "proposals")) ? 12 : 8}>
                 {!props.focus &&
                     <ContentLanding
                         content={props.content}
