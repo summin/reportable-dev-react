@@ -2,44 +2,30 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Table from 'react-bootstrap/Table'
 import Col from 'react-bootstrap/Col'
+import ChartPie from '../../Elements/ChartPie'
+import BarsX from '../../Elements/BarsX'
+import Bars from '../../Elements/Bars'
+import F from '../../Elements/F'
+
+const chartData = {
+    "Year 1, Micrsoft, OS \n and other services": 0.5,
+    "Year 2": 0.2,
+    "Year 4": 1.8,
+    "Year 5": 0.1
+}
+
+const chartStyle = {
+    w: 300,
+    h: 200
+}
 
 export default () => {
     return (
         <Fragment>
-            <Col lg={6}>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>#</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-
-                            <td>Mark</td>
-                            <td></td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-
-                            <td>Jacob</td>
-                            <td></td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2">Larry the Bird</td>
-                            <td>3</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Col>
+            <ChartPie data={chartData} style={chartStyle} />
+            <Bars/>
+            <BarsX/>
+            <F/>
         </Fragment>
     )
 }
-

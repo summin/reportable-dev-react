@@ -1,9 +1,9 @@
-
 * {
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     padding: 0;
     margin: 0;
     padding-top: 30px;
@@ -11,10 +11,14 @@ body, html {
 }
 
 @import "Header";
+@import "../Elements/ChartPie/index.scss";
+@import "../Elements/BarsX/index.scss";
+@import "../Elements/Bars/index.scss";
+@import "../Elements/F/index.scss";
 @import "fx";
 @import "./bootstrap/bootstrap";
 
-.nav-item  a {
+.nav-item a {
     color: black !important;
 }
 
@@ -43,11 +47,11 @@ a {
     overflow: hidden;
 }
 
-@media (max-width: 575px){
+@media (max-width: 575px) {
     .img {
         padding: 0 25% 0 25%;
-        }   
-  }
+    }
+}
 
 .first-caps {
     text-transform: capitalize;
@@ -62,7 +66,7 @@ a {
 }
 
 .word-wrap {
-word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .cursorHand {
@@ -76,6 +80,10 @@ word-wrap: break-word;
 .fixedBottom {
     position: fixed;
     bottom: 0
+}
+
+.smaller {
+    transform: scale(0.5);
 }
 
 @include media-breakpoint-down(sm) {
@@ -95,10 +103,9 @@ word-wrap: break-word;
         top: 0;
     }
 
-    .navbtngroup{
+    .navbtngroup {
         display: flex;
         flex-direction: column;
         margin: 0 0 3px 0;
     }
-
- }
+}

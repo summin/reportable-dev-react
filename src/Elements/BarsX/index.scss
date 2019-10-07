@@ -1,0 +1,71 @@
+.barsX {
+    font-family: 'Open Sans', sans-serif;
+    width: 1000px;
+    height: 600px;
+    margin: auto;
+    background-color: white;
+}
+
+.barsX div#layout {
+    text-align: left;
+}
+
+.barsX svg {
+    width: 100%;
+    height: 100%;
+}
+
+.barsX .bar {
+    fill: #80cbc4;
+}
+
+.barsX text {
+    font-size: 14px;
+    fill: black
+}
+
+.barsX path {
+    stroke: black;
+}
+
+.barsX line {
+    stroke: black
+}
+
+.barsX line#limit {
+    stroke: #FED966;
+    stroke-width: 3;
+    stroke-dasharray: 3 6;
+}
+
+.barsX .barsXgrid path {
+    stroke-width: 0;
+}
+
+.barsX .barsXgrid .tick line {
+    stroke: #9FAAAE;
+    stroke-opacity: 0.3;
+}
+
+.barsX text.divergence {
+    font-size: 14px;
+    fill: #2F4A6D;
+}
+
+.barsX text.value {
+    font-size: 14px;
+}
+
+.barsX text.title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.barsX text.label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.barsX text.source {
+    font-size: 10px;
+}

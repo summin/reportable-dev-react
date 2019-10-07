@@ -1,0 +1,58 @@
+.dashboardF {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.dashboardF path {
+    stroke: #fff;
+}
+
+.dashboardF path:hover {
+    opacity: 0.9;
+}
+
+.dashboardF rect:hover {
+    fill: blue;
+}
+
+.dashboardF .axis {
+    font: 10px sans-serif;
+}
+
+.dashboardF .legend tr {
+    border-bottom: 1px solid grey;
+}
+
+.dashboardF .legend tr:first-child {
+    border-top: 1px solid grey;
+}
+
+.dashboardF .axis path,
+.dashboardF .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.dashboardF .x.axis path {
+    display: none;
+}
+
+.dashboardF .legend {
+    margin-bottom: 76px;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+.dashboardF .legend td {
+    padding: 4px 5px;
+    vertical-align: bottom;
+}
+
+.dashboardF .legendFreq,
+.dashboardF .legendPerc {
+    text-align: right;
+    width: 50px;
+}
+

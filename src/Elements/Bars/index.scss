@@ -1,0 +1,15 @@
+.bars .chart {
+    padding: 0 0 0 2px;
+    border-width: 1px;
+    border-style: none none solid solid;
+}
+
+.bars .chart rect {
+    fill: steelblue;
+}
+
+.bars .chart text {
+    fill: black;
+    font: 10px sans-serif;
+    text-anchor: end;
+}
