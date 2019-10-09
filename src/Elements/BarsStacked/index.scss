@@ -1,0 +1,10 @@
+.chart-container {
+    padding: 25px;
+}
+
+.barsStacked .axis path,
+.barsStacked .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}

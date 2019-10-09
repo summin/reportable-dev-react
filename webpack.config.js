@@ -80,7 +80,7 @@ const config = {
     externals: {
         myApp: 'myApp',
         config: JSON.stringify({
-            apiUrl: 'http://localhost:4000'
+            apiUrl: 'http://5.189.132.95'
         })
     },
     plugins: [

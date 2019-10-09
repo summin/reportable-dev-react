@@ -8,7 +8,7 @@ import {getContentFocus} from '../actions'
 const buttons = ({ ...props }) => {
 
     let group = [];
-    let sections = ["Save Template", "Load Template"];
+    let sections = ["Unassigned A", "Unassigned B"];
     const buttonRow = (n, s) => {
         const buttons = [];
         let i, label;

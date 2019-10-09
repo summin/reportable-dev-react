@@ -1,19 +1,23 @@
-
-.persp100px{
-    -webkit-perspective: 100px; /* Safari 4-8  */
+.persp100px {
+    -webkit-perspective: 100px;
+    /* Safari 4-8  */
     perspective: 600px;
 }
 
 .landingFXForm {
     width: 100%;
-    -ms-transform: skewY(20deg); /* IE 9 */
-    -webkit-transform: skewY(20deg); /* Safari 3-8 */
-    -webkit-transform-style: preserve-3d; /* Safari 3-8  */  
-    -webkit-transform: rotateX(45deg); /* Safari 3-8  */
+    -ms-transform: skewY(20deg);
+    /* IE 9 */
+    -webkit-transform: skewY(20deg);
+    /* Safari 3-8 */
+    -webkit-transform-style: preserve-3d;
+    /* Safari 3-8  */
+    -webkit-transform: rotateX(45deg);
+    /* Safari 3-8  */
     transform-style: preserve-3d;
     transform: rotateX(65deg);
     border-style: solid;
     border-width: 1px;
     box-shadow: 0 10px 5px grey;
 
-  }
+}

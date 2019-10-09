@@ -16,7 +16,7 @@ const barsX = (id, fData) => {
             hGDim.h = 300 - hGDim.t - hGDim.b;
 
         //create svg for histogram.
-        var hGsvg = d3.select(id).append("svg")
+        var hGsvg = d3.select(id)
             .attr("width", hGDim.w + hGDim.l + hGDim.r)
             .attr("height", hGDim.h + hGDim.t + hGDim.b).append("g")
             .attr("transform", "translate(" + hGDim.l + "," + hGDim.t + ")");
@@ -98,7 +98,7 @@ const barsX = (id, fData) => {
         pieDim.r = Math.min(pieDim.w, pieDim.h) / 2;
 
         // create svg for pie chart.
-        var piesvg = d3.select(id).append("svg")
+        var piesvg = d3.select(id)
             .attr("width", pieDim.w).attr("height", pieDim.h).append("g")
             .attr("transform", "translate(" + pieDim.w / 2 + "," + pieDim.h / 2 + ")");
 
@@ -148,7 +148,7 @@ const barsX = (id, fData) => {
         var leg = {};
 
         // create table for legend.
-        var legend = d3.select(id).append("table").attr('class', 'legend');
+        var legend = d3.select(id).attr('class', 'legend');
 
         // create one row per segment.
         var tr = legend.append("tbody").selectAll("tr").data(lD).enter().append("tr");
@@ -229,6 +229,6 @@ export default ({ ...props }) => {
 
     useEffect(() => barsX('.dashboardF', freqData))
     return (
-        <div className='dashboardF'></div>
+        <svg className='dashboardF'/>
     )
 }

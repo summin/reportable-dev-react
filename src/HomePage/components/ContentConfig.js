@@ -56,18 +56,39 @@ class ContentConfig extends Component {
             <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
                 <Row className="mt-1" key={cuid()}>
                     <Col md={6} key={cuid()}>
-                        <Alert key={cuid()} variant="primary" size="md" style={alertStyle}>!! ONLY FOR DEVELOPERS !!</Alert>
+                        <Alert key={cuid()} variant="primary" size="md" style={alertStyle}>App Configuration Utility</Alert>
                     </Col>
-                    <Col md={4} key={cuid()}>
-                        <Alert key={cuid()} variant="secondary" style={alertStyle}>!! DON'T USE !!</Alert>
-                    </Col>
-                    <Col md={2} key={cuid()}>
-                        <div className="d-flex">
-                            <Button type="submit" key={cuid()} style={buttonStyle} size="md" variant="secondary" block>Submit</Button>
-                        </div>
+                    <Col md={6} key={cuid()}>
+                        <Alert key={cuid()} variant="secondary" style={alertStyle}>Config</Alert>
                     </Col>
                 </Row>
                 <Form.Group key={1} as={Row}>
+                    <Col lg={2}>
+                        <Form.Label
+                            key={1}
+                            className="mr-auto word-wrap"
+                            value={"Form Config"}
+                            style={labelStyle}>
+                            {"Request Submission Style"}
+                        </Form.Label>
+                    </Col>
+                    <Col lg={4} key={cuid()}>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="formclassic" checked />
+                            <label class="form-check-label" for="exampleRadios1">
+                                Classic
+                                </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="formclassic" />
+                            <label class="form-check-label" for="exampleRadios2">
+                                Full-Screen Fixed
+                            </label>
+                        </div>
+                    </Col>
+                </Form.Group>
+
+                <Form.Group key={2} as={Row}>
                     <Col lg={2}>
                         <Form.Label
                             key={1}
@@ -101,6 +122,7 @@ const mapsStateToProps = (state) => {
 }
 
 const actionCreators = {
+    submit: proposalActions.submit,
     submit: proposalActions.submit,
 };
 

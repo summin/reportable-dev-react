@@ -1,14 +1,14 @@
 
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import * as d3 from '../d3'
 
 const chartPie = ({ ...props }) => {
-    console.log(props)
+    console.log(props.ID)
 
     const { data, style } = props;
 
-    var svg = d3.select(".pieOne")
-        .append("svg")
+    var svg = d3.select(".pieOne." + props.ID)
+        .select("svg")
         .append("g")
 
     svg.append("g")
@@ -30,7 +30,7 @@ const chartPie = ({ ...props }) => {
 
     var arc = d3.svg.arc()
         .outerRadius(radius * 0.8)
-        .innerRadius(radius * 0.6);
+        .innerRadius(radius * style.inrad);
 
     var outerArc = d3.svg.arc()
         .innerRadius(radius * 0.9)
@@ -47,16 +47,11 @@ const chartPie = ({ ...props }) => {
     function randomData() {
         var labels = color.domain();
         return labels.map(function (label) {
-            return { label: label, value: data[label]}
+            return { label: label, value: data[label] }
         });
     }
 
     change(randomData());
-
-    d3.select(".randomize")
-        .on("click", function () {
-            change(randomData());
-        });
 
     function change(data) {
 
@@ -85,75 +80,85 @@ const chartPie = ({ ...props }) => {
 
         /* ------- TEXT LABELS -------*/
 
-        var text = svg.select(".labels").selectAll("text")
-            .data(pie(data), key);
+        if (style.labels) {
 
-        text.enter()
-            .append("text")
-            .attr("dy", ".35em")
-            .text(function (d) {
-                return d.data.label;
-            });
+            var text = svg.select(".labels").selectAll("text")
+                .data(pie(data), key);
 
-        function midAngle(d) {
-            return d.startAngle + (d.endAngle - d.startAngle) / 2;
-        }
+            text.enter()
+                .append("text")
+                .attr("dy", ".35em")
+                .text(function (d) {
+                    return d.data.label;
+                });
 
-        text.transition().duration(1000)
-            .attrTween("transform", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    var d2 = interpolate(t);
-                    var pos = outerArc.centroid(d2);
-                    pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-                    return "translate(" + pos + ")";
-                };
-            })
-            .styleTween("text-anchor", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    var d2 = interpolate(t);
-                    return midAngle(d2) < Math.PI ? "start" : "end";
-                };
-            });
+            function midAngle(d) {
+                return d.startAngle + (d.endAngle - d.startAngle) / 2;
+            }
 
-        text.exit()
-            .remove();
+            text.transition().duration(1000)
+                .attrTween("transform", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        var d2 = interpolate(t);
+                        var pos = outerArc.centroid(d2);
+                        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                        return "translate(" + pos + ")";
+                    };
+                })
+                .styleTween("text-anchor", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        var d2 = interpolate(t);
+                        return midAngle(d2) < Math.PI ? "start" : "end";
+                    };
+                });
 
-        /* ------- SLICE TO TEXT POLYLINES -------*/
+            text.exit()
+                .remove();
 
-        var polyline = svg.select(".lines").selectAll("polyline")
-            .data(pie(data), key);
+            /* ------- SLICE TO TEXT POLYLINES -------*/
 
-        polyline.enter()
-            .append("polyline");
+            var polyline = svg.select(".lines").selectAll("polyline")
+                .data(pie(data), key);
 
-        polyline.transition().duration(1000)
-            .attrTween("points", function (d) {
-                this._current = this._current || d;
-                var interpolate = d3.interpolate(this._current, d);
-                this._current = interpolate(0);
-                return function (t) {
-                    var d2 = interpolate(t);
-                    var pos = outerArc.centroid(d2);
-                    pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-                    return [arc.centroid(d2), outerArc.centroid(d2), pos];
-                };
-            });
+            polyline.enter()
+                .append("polyline");
 
-        polyline.exit()
-            .remove();
-    };
+            polyline.transition().duration(1000)
+                .attrTween("points", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        var d2 = interpolate(t);
+                        var pos = outerArc.centroid(d2);
+                        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                        return [arc.centroid(d2), outerArc.centroid(d2), pos];
+                    };
+                });
+
+            polyline.exit()
+                .remove();
+
+        };
+    }
 
 }
 
-export default ({ ...props }) => {
+ const ChartPie = ({ ...props }) => {
     useEffect(() => chartPie(props))
+    const [count, setCount] = useState(0);
     return (
-        <div className="pieOne"></div>
+        <Fragment>
+            <div className={"pieOne " + props.ID}><svg  /></div>
+        </Fragment>
+
     )
 }
+
+export default ChartPie 

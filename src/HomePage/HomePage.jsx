@@ -24,7 +24,7 @@ class HomePage extends React.Component {
             <Fragment>
                 {loggedIn &&
                     <Fragment>
-                        <Container fluid={true}>
+                        <Container fluid>
                             <Row className="mt-1">
                                 {this.props.focus &&
                                     <ContentViewLeft

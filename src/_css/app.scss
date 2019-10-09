@@ -8,15 +8,21 @@ html {
     margin: 0;
     padding-top: 30px;
     padding-bottom: 0px;
+    
 }
 
 @import "Header";
+@import "../HomePage/components/Primitives/index.scss";
 @import "../Elements/ChartPie/index.scss";
 @import "../Elements/BarsX/index.scss";
 @import "../Elements/Bars/index.scss";
+@import "../Elements/BarsStacked/index.scss";
+@import "../Elements/BarsXStacked/index.scss";
 @import "../Elements/F/index.scss";
 @import "fx";
 @import "./bootstrap/bootstrap";
+@import './devexpress/dist/dx-react-chart-bootstrap4.css';
+
 
 .nav-item a {
     color: black !important;

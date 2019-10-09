@@ -1,14 +1,14 @@
-.bars .chart {
-    padding: 0 0 0 2px;
+.chart {
+    padding: 0 0 1px 2px;
     border-width: 1px;
-    border-style: none none solid solid;
+    border-style: none solid solid none;
 }
 
-.bars .chart rect {
+.chart rect {
     fill: steelblue;
 }
 
-.bars .chart text {
+.chart text {
     fill: black;
     font: 10px sans-serif;
     text-anchor: end;

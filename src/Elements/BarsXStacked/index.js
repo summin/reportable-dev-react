@@ -2,12 +2,12 @@
 import React, { useEffect } from 'react'
 import * as d3 from 'd3'
 
-const barsX = ({ ...props }) => {
+const barsXa = ({ ...props }) => {
 
     const {style, data} = props
     
 
-    const svg = d3.select('.barsX.' + props.ID).select("svg").append("g");
+    const svg = d3.select('.barsXa.' + props.ID).select("svg").append("g");
 
     const margin = 80;
     const width = style.w - 2 * margin;
@@ -160,9 +160,9 @@ const barsX = ({ ...props }) => {
 }
 
 export default ({ ...props }) => {
-    useEffect(() => barsX(props))
+    useEffect(() => barsXa(props))
     return (
-        <div className={"barsX " + props.ID}><svg/></div>
+        <div className={"barsXa " + props.ID}><svg/></div>
         
     )
 }
