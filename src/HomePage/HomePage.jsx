@@ -26,14 +26,7 @@ class HomePage extends React.Component {
                     <Fragment>
                         <Container fluid>
                             <Row className="mt-1">
-                                {this.props.focus &&
-                                    <ContentViewLeft
-                                        focus={this.props.focus} />}
-                                <ContentViewCenter
-                                    focus={this.props.focus} />
-                                {this.props.focus &&
-                                    <InfoBoard
-                                        focus={this.props.focus} />}
+                                <ContentViewCenter focus={this.props.focus}/>
                             </Row>
                         </Container>
                     </Fragment>

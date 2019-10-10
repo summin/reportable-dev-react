@@ -1,5 +1,5 @@
 
-import React, { Component, PureComponent, useState } from 'react';
+import React, { Fragment, Component, PureComponent, useState } from 'react';
 import { connect } from 'react-redux'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -10,12 +10,35 @@ import Button from 'react-bootstrap/Button'
 import Textarea from 'react-textarea-autosize'
 import cuid from 'cuid'
 import { proposalActions } from '../../_actions'
+import { contractActions } from '../../_actions'
+import ContractsJSON from './contentHelpers/contracts.json'
 
-const alertStyle = {
+const FormPanel = ({ ...props }) => {
+
+    let { alert, validated, proposals, contracts } = props
+
+    return (
+        <Fragment>
+            <Row className="mt-1" key={"1a"}>
+                <Col md={10} key={"2a"}>
+                    <Alert className="d-flex justify-content-between" variant={validated ? "danger" : alert.type ? alert.type : "primary"} size="md">
+                        {validated ? "Please, fill all the fields in the form!"
+                            : alert.message ? alert.message
+                                : "Please, fill and submit proposal for further review..."}
+                        {proposals.loading && <Spinner className="mt-1" animation="border" size="sm" />}
+                    </Alert>
+                </Col>
+                <Col md={2} key={"3a"}>
+                    <div className="d-flex">
+                        <Button type="submit" style={buttonStyle} size="md" variant="secondary" block>Submit</Button>
+                    </div>
+                </Col>
+            </Row>
+        </Fragment>
+    )
 }
 
-const buttonStyle = {
-    padding: '0.4em 0em'
+const alertStyle = {
 }
 
 const textStyle = {
@@ -32,36 +55,71 @@ const labelStyle = {
     'overflowY': 'visible'
 }
 
-class ContentConfig extends Component {
+let alert1, alert2;
 
-    state = {
-        validated: false,
-    }
+const buttonStyle = {
+    padding: '0.4em 0em'
+}
 
-    handleSubmit = event => {
+const validationFeedback = {
+    position: 'absolute',
+    fontWeight: "800",
+    fontize: "2ex",
+    top: "35px"
+}
 
-        let proposal = {};
-        event.preventDefault();
-        Object.values(event.target).map((i) => {
-            Object.assign(proposal, { [i.name]: i.value })
-        })
-        const form = event.target;
 
-        this.props.submit(proposal)
+const labelSpanStyle = {
+    position: "absolute",
+    bottom: "50px",
+}
 
+const ContentConfig = ({ ...props }) => {
+
+    const [count, setCount] = useState(0);
+
+    let { proposals, alert } = props;
+
+    const handleSubmit = event => {
+        event.preventDefault()
+        props.submit(ContractsJSON[count])
+        setCount(count+1)
     };
 
-    render() {
-        return (
-            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
-                <Row className="mt-1" key={cuid()}>
-                    <Col md={6} key={cuid()}>
-                        <Alert key={cuid()} variant="primary" size="md" style={alertStyle}>App Configuration Utility</Alert>
-                    </Col>
-                    <Col md={6} key={cuid()}>
-                        <Alert key={cuid()} variant="secondary" style={alertStyle}>Config</Alert>
-                    </Col>
-                </Row>
+    const localFormSrc = (entry) => {
+        const entries = {
+            "dbRequestorFullName": props.user.firstName + " " + props.user.lastName,
+            "dbRequestorEmployeeID": props.user.username,
+            "dbDateofRequest": (new Date).toLocaleDateString('en-GB')
+        }
+        if (entries[entry])
+            return entries[entry]
+        else return false
+    }
+
+    const getGroups = (formConfig) => {
+        let formGroups = []
+        for (let key in formConfig) {
+            if (formConfig[key].gr != formGroups[formGroups.length - 1])
+                formGroups.push(formConfig[key].gr)
+        }
+        return formGroups
+    }
+
+    const getOptions = (string) => {
+        let options = []
+        options = string.split(", ")
+        return options
+    }
+
+    return (
+
+            
+
+        <Form className="mb-4 pb-4" onSubmit={handleSubmit}>
+            <FormPanel
+                alert={alert}
+                proposals={proposals} />
                 <Form.Group key={1} as={Row}>
                     <Col lg={2}>
                         <Form.Label
@@ -75,13 +133,13 @@ class ContentConfig extends Component {
                     <Col lg={4} key={cuid()}>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="formclassic" checked />
-                            <label class="form-check-label" for="exampleRadios1">
+                            <label class="form-check-label" >
                                 Classic
                                 </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="formclassic" />
-                            <label class="form-check-label" for="exampleRadios2">
+                            <label class="form-check-label">
                                 Full-Screen Fixed
                             </label>
                         </div>
@@ -99,32 +157,29 @@ class ContentConfig extends Component {
                         </Form.Label>
                     </Col>
                     <Col lg={10} key={cuid()}>
-                        <Textarea
-                            key={cuid()}
-                            className="transitionForm"
-                            onChange={(e) => this.props.dispatch(pushFormValue(j[2], e, sectionAPI))}
-                            defaultValue={"Proposal Style"}
-                            style={textStyle}
-                            inputRef={tag => (this.textarea = tag)}
-                            name="FormConfig"
-                            id={"ID"} />
+                    <h3>{count}</h3>
+                    <p>{JSON.stringify(ContractsJSON[count])}</p>
                     </Col>
                 </Form.Group>
 
             </Form>
-        );
-    }
-}
-
+            );
+            
+            }
+            
+            
+            
 const mapsStateToProps = (state) => {
-    const { user } = state.authentication;
-    return { user }
-}
-
+    const {alert, proposals, contracts } = state;
+    const {user} = state.authentication;
+    return {user, alert, proposals, contracts }
+        }
+        
 const actionCreators = {
-    submit: proposalActions.submit,
-    submit: proposalActions.submit,
-};
 
-
-export default connect(mapsStateToProps, actionCreators)(ContentConfig)
+                submit: contractActions.submit,
+        };
+        
+        export default connect(mapsStateToProps, actionCreators)(ContentConfig)
+        
+        

@@ -1,17 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux'
 import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import ChartPie from '../../Elements/ChartPie'
-import BarsX from '../../Elements/BarsX'
 import Bars from '../../Elements/Bars'
 import BarFullStacked from '../../Elements/DX/BarFullStacked'
-import BarsStacked from '../../Elements/BarsStacked'
-import BarsXStacked from '../../Elements/BarsXStacked'
 import Tip from './Primitives/Tip'
 import Jumbo from './Primitives/Jumbo'
+import { proposalActions } from '../../_actions'
+import { contractActions } from '../../_actions'
 
 
 const barsXdata = [
@@ -46,15 +46,10 @@ const barsXdata1 = [
 ];
 
 const chartData = {
-    "Year 4": 0.5,
+    "Year 4": 1.5,
     "Year 2": 0.5,
     "Year 5": 0.22
 
-}
-
-const chartData1 = {
-    "Year 1, Micrsoft, OS \n and other services": 0.5,
-    "Year 5": 0.1
 }
 
 const chartStyle = {
@@ -64,23 +59,82 @@ const chartStyle = {
     labels: true
 }
 
-const barxStyle = {
-    w: 600,
-    h: 400,
-    inrad: 0.4,
-    labels: true,
-    title: "Title",
-    yTitle: "yTitle",
-    xTitle: "xTitle",
-    source: "Source"
 
-}
 
 let barsData = [Math.floor(Math.random() * 100)]
 
 
 
-export default () => {
+const ContentDashboard = ({...props}) => {
+
+    const { user, alert } = props;
+    const contracts = props.contracts.contracts
+    const proposals = props.proposals.proposals;
+
+    const amountOfProposals = () => {
+        return proposals ? proposals.length : ""
+    }
+
+    !contracts && props.getContracts("")
+    !proposals && props.getProposals("")
+    
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    let amountOfContracts = () => {
+        return contracts ? contracts.length : false
+    }
+
+    let theNext12Months = (x) => {
+        let value = 0;
+        if (contracts) {
+            contracts.map((i) => {
+                value = value + i.dbY1
+            })
+        if (x=="sub") {
+            value=Math.floor(value/1.8)
+        }
+        return formatNumber(value)
+        }
+        else return false
+    }
+
+    let addressable12Months = () => {
+        let value = 0;
+        if (contracts) {
+            contracts.map((i) => {
+                value = value + i.dbY2
+            })
+        return formatNumber(value)
+        }
+        else return false
+    }
+
+    const ratio = () => {
+        let value1 = 0
+        let value2 = 0
+        if (contracts) {
+            contracts.map((i) => {
+                value1 = value1 + i.dbY2;
+                value2 = value2 + i.dbY1;
+            });
+            return ((value2/value1).toPrecision(3))
+        }
+        
+        
+    }
+
+    let totalContractValue = () => {
+        let value = 0;
+        if (contracts) {
+            contracts.map((i) => {
+                value = value + i.dbY1 + i.dbY2 + i.dbY3 + i.dbY4 + i.dbY5 + i.dbY6 + i.dbY7 + i.dbY8
+            })
+        return formatNumber(value)
+        }
+        else return false
+    }
 
     return (
 
@@ -91,25 +145,25 @@ export default () => {
             <Row className="mt-5">
                 <Col className="d-flex justify-content-end flex-row">
                     <Col className="d-flex justify-content-start flex-column">
-                        <Tip title="AMOUNT OF CONTRACTS" type="lg" value="20,000" prepend="" textType="cap" icon="faFileAlt" iconcol="white" bg="#51bfc4" loading={false} />
-                        <Tip title="REVENUES: THE NEXT 12 MONTH" type="lg" value="20,000" prepend="$" textType="cap" icon="faFileSignature" iconcol="white" bg="#51bfc4" loading={false} />
-                        <Tip title="ADDRESABLE SPEND IN 2020" type="lg" value="20,000" prepend="$" textType="cap" icon="faMoneyCheckAlt" iconcol="white" bg="#51bfc4" loading={false} />
+                        <Tip title="AMOUNT OF CONTRACTS" type="lg" value={amountOfContracts()} prepend="" textType="cap" icon="faFileAlt" iconcol="white" bg="#51bfc4" loading={!amountOfContracts()} />
+                        <Tip title="REVENUES: THE NEXT 12 MONTH" type="lg" value={theNext12Months()}prepend="$" textType="cap" icon="faFileSignature" iconcol="white" bg="#51bfc4" loading={!theNext12Months()} />
+                        <Tip title="ADDRESABLE SPEND IN 2020" type="lg" value={addressable12Months()}  prepend="$" textType="cap" icon="faMoneyCheckAlt" iconcol="white" bg="#51bfc4" loading={!addressable12Months()} />
 
                     </Col>
                     <Col className="d-flex justify-content-start flex-column">
-                        <Tip title="TOTAL CONTRACT VALUE" type="lg" value="20,000" prepend="$" textType="cap" icon="faSignal" iconcol="white" bg="#51bfc4" loading={false} />
-                        <Tip title="COSTS: THE NEXT 12 MONTH" type="lg" value="20,000" prepend="$" textType="cap" icon="faSignal" iconcol="white" bg="#51bfc4" loading={false} />
-                        <Tip title="TOTAL OPX/CAPX RATIO" type="lg" value="0.36" prepend="Bars" textType="cap" icon="faSignal" iconcol="white" bg="#51bfc4" loading={false} />
+                        <Tip title="TOTAL CONTRACT VALUE" type="lg" value={totalContractValue()} prepend="$" textType="cap" icon="faSignal" iconcol="white" bg="#51bfc4" loading={!totalContractValue()} />
+                        <Tip title="COSTS: THE NEXT 12 MONTH" type="lg" value={theNext12Months("sub")}  prepend="$" textType="cap" icon="faSignal" iconcol="white" bg="#51bfc4" loading={!addressable12Months()} />
+                        <Tip title="TOTAL REV/COST RATIO" type="lg" value={ratio()} prepend="Bars" textType="cap" icon="faSignal" iconcol="white" bg="#51bfc4" loading={false} />
                     </Col>
                 </Col>
                 <Col lg={4} className="d-flex justify-content-start flex-row">
                     <Jumbo
-                        jumbo="9"
+                        jumbo={amountOfProposals()}
                         bg="#993366"
                         loading={false}
-                        title="Contracts to Review"
-                        text="Please, reveiw the contracts"
-                        button="Contracts"
+                        title="New Proposals"
+                        text="New proposals to be reviewed by..."
+                        button="Proposals"
                         width="12rem" />
                     <Jumbo
                         jumbo="9"
@@ -126,7 +180,7 @@ export default () => {
 
 
                     <Col lg={3} className="d-flex flex-column justify-content-around">
-                        <Tip title="STATUS OF CONTRACTS" type="lg" prepend="$" textType="cap" icon="faSyncAlt" iconcol="#666699" bg loading={false} />
+                        <Tip title="CONTRACTS BY OWNER" type="lg" prepend="$" textType="cap" icon="faSyncAlt" iconcol="#666699" bg loading={false} />
                         <ChartPie key={1} ID={"a"} data={chartData} style={chartStyle} /> </Col>
                     <Col lg={3} className="d-flex flex-column justify-content-around">
                         <Tip title="CONTRACTS BY INDUSTRY" type="lg" prepend="$" textType="cap" icon="faLayerGroup" iconcol="#666699" bg loading={false} />
@@ -200,3 +254,18 @@ export default () => {
 
     )
 }
+
+
+const mapsStateToProps = (state) => {
+    const { alert, proposals, contracts } = state;
+    const { user } = state.authentication;
+    return { user, alert, proposals, contracts }
+}
+
+const actionCreators = {
+
+    getProposals: proposalActions.get,
+    getContracts: contractActions.get
+};
+
+export default connect(mapsStateToProps, actionCreators)(ContentDashboard)

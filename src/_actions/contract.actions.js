@@ -1,9 +1,9 @@
-import { proposalConstants } from '../_constants';
-import { proposalService } from '../_services';
+import { contractConstants } from '../_constants';
+import { contractService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
 
-export const proposalActions = {
+export const contractActions = {
     submit,
     get
 };
@@ -14,7 +14,7 @@ function get(attr) {
     return dispatch => {
         dispatch(request());
 
-        proposalService.get(attr)
+        contractService.get(attr)
             .then(
                 res => {
                     dispatch(success(res));
@@ -29,23 +29,24 @@ function get(attr) {
             );
     };
 
-    function request() { return { type: proposalConstants.GET_REQUEST } }
-    function success(res) { return { type: proposalConstants.GET_SUCCESS, res } }
-    function failure(error) { return { type: proposalConstants.GET_FAILURE, error } }
+    function request() { return { type: contractConstants.GET_REQUEST } }
+    function success(res) { return { type: contractConstants.GET_SUCCESS, res } }
+    function failure(error) { return { type: contractConstants.GET_FAILURE, error } }
 }
 
 // SUBMIT
 
-function submit(proposal) {
+function submit(contract) {
 
     return dispatch => {
         dispatch(request());
-        proposalService.submit(proposal)
+        console.log(contract)
+        contractService.submit(contract)
             .then(
                 res => {
                     dispatch(success(res));
                     dispatch(alertActions.clear());
-                    dispatch(alertActions.success(`Proposal N° ${proposal.dbContractReferenceNumber} Submitted`));
+                    dispatch(alertActions.success(`contract N° ${contract.dbContractReferenceNumber} Submitted`));
                 },
 
                 error => {
@@ -55,7 +56,7 @@ function submit(proposal) {
             );
     };
 
-    function request() { return { type: proposalConstants.SUBMIT_REQUEST, proposal } }
-    function success(proposal) { return { type: proposalConstants.SUBMIT_SUCCESS, proposal } }
-    function failure(error) { return { type: proposalConstants.SUBMIT_FAILURE, error } }
+    function request() { return { type: contractConstants.SUBMIT_REQUEST, contract } }
+    function success(contract) { return { type: contractConstants.SUBMIT_SUCCESS, contract } }
+    function failure(error) { return { type: contractConstants.SUBMIT_FAILURE, error } }
 }

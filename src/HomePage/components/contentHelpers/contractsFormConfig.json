@@ -1,0 +1,292 @@
+{
+    "dbUniqueReferenceNumber": {
+        "name": "Unique Reference Number",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 10,
+        "xgr": 1,
+        "comments": "Auto-populated from Active/Group Directory"
+    },
+    "dbSupplierID": {
+        "name": "Supplier ID",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 10,
+        "xgr": 1,
+        "comments": "Auto-populated from Active/Group Directory"
+    },
+    "dbContractReferenceNumber": {
+        "name": "Contract Reference Number",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 10,
+        "xgr": 1,
+        "comments": "Auto-populated from Active/Group Directory"
+    },
+    "dbCostRequestReference": {
+        "name": "Cost Request Reference",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 20,
+        "xgr": 1,
+        "comments": "Auto-populated from Active/Group Directory"
+    },
+    "dbUniqueBudgetline": {
+        "name": "Unique Budget line",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 20,
+        "xgr": 1,
+        "comments": "Auto-populated from Active/Group Directory"
+    },
+    "dbTotalContractValue$": {
+        "name": "Total Contract Value$",
+        "prepend": "$",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 30,
+        "xgr": 1,
+        "comments": "Drop-down list for users to select from"
+    },
+    "dbTotalContractValue": {
+        "name": "Total Contract Value",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 30,
+        "xgr": 1,
+        "comments": "Drop-down list for users to select from"
+    },
+    "dbVendorname": {
+        "name": "Vendor name",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 40,
+        "xgr": 1,
+        "comments": "Auto-populated on the day of initial request"
+    },
+    "dbContractDescription": {
+        "name": "Contract Description",
+        "prepend": "",
+        "w": 12,
+        "type": "text",
+        "options": "",
+        "gr": 41,
+        "xgr": 1,
+        "comments": "Drop-down list for users to select from"
+    },
+    "dbSpendCategory": {
+        "name": "Spend Category",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 40,
+        "xgr": 1,
+        "comments": "Linked to the contract database - ability to insert new reference should be an option (for entering new relationships"
+    },
+    "dbContractStartDate": {
+        "name": "Contract Start Date",
+        "prepend": "",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 50,
+        "xgr": 1,
+        "comments": "Commodity category of spend which is aligned to given IT owners - Enterprise Services, Telecoms etc."
+    },
+    "dbContractEndDate": {
+        "name": "Contract End Date",
+        "prepend": "",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 50,
+        "xgr": 1,
+        "comments": "Title of the project/Business case - this is a headline of what the spend is for"
+    },
+    "dbContractLengh": {
+        "name": "Contract Lengh",
+        "prepend": "months",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 50,
+        "xgr": 1,
+        "comments": "Selection to be specified by company"
+    },
+    "dbContractReviewdate": {
+        "name": "Contract Review date",
+        "prepend": "",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 50,
+        "xgr": 1,
+        "comments": "Free text"
+    },
+    "dbReviewNotes": {
+        "name": "Review Notes",
+        "prepend": "",
+        "w": 12,
+        "type": "text",
+        "options": "",
+        "gr": 60,
+        "xgr": 1,
+        "comments": "Yes/No"
+    },
+    "dbCountry": {
+        "name": "Country",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 70,
+        "xgr": 1,
+        "comments": "Free text"
+    },
+    "dbDepartmentowningrelationship": {
+        "name": "Department owning relationship ",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 70,
+        "xgr": 1,
+        "comments": "Free text"
+    },
+    "dbBusinessOwner": {
+        "name": "Business Owner",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 70,
+        "xgr": 1,
+        "comments": "Free text"
+    },
+    "dbProcurementLead": {
+        "name": "Procurement Lead",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 80,
+        "xgr": 1,
+        "comments": "Linked to the contract database - ability to insert new reference should be an option (for entering new relationships"
+    },
+    "dbITCostManagerLead": {
+        "name": "IT Cost Manager Lead",
+        "prepend": "",
+        "w": 4,
+        "type": "text",
+        "options": "",
+        "gr": 80,
+        "xgr": 1,
+        "comments": "New/Existing"
+    },
+    "dbY1": {
+        "name": "Y1",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Strategic/Tactical/ Value Added Reseller"
+    },
+    "dbY2": {
+        "name": "Y2",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Free text for the business case"
+    },
+    "dbY3": {
+        "name": "Y3",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Free text for the business case"
+    },
+    "dbY4": {
+        "name": "Y4",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Free text for the business case"
+    },
+    "dbY5": {
+        "name": "Y5",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Free text for the business case"
+    },
+    "dbY6": {
+        "name": "Y6",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Free text"
+    },
+    "dbY7": {
+        "name": "Y7",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Numeric value 1-60"
+    },
+    "dbY8": {
+        "name": "Y8",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Yes/No"
+    },
+    "dbY9": {
+        "name": "Y9",
+        "prepend": "$",
+        "w": 3,
+        "type": "text",
+        "options": "",
+        "gr": 90,
+        "xgr": 1,
+        "comments": "Yes/No"
+    }
+}

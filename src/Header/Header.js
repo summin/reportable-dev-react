@@ -12,6 +12,7 @@ import { } from '../_actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faUserCircle,
+    faFileAlt,
     faEnvelope,
     faChartArea,
     faCheck,
@@ -88,6 +89,15 @@ class Header extends Component {
                                 value="proposals"
                                 onClick={this.props.getFocus}>
                                 <div className="d-inline"><FontAwesomeIcon icon={faCheck} size="lg" /> Proposals </div>
+                            </Button>
+                            <Button
+                                key={cuid()}
+                                className="ml-1 mr-1 navbtn"
+                                variant="nav-btn"
+                                size="sm"
+                                value="contracts"
+                                onClick={this.props.getFocus}>
+                                <div className="d-inline"><FontAwesomeIcon icon={faFileAlt} size="lg" /> Contracts </div>
                             </Button>
                             <Button
                                 key={cuid()}

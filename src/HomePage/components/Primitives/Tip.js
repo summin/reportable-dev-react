@@ -43,17 +43,12 @@ const awesomes = {
     faSignal: faSignal,
     faChartPie: faChartPie,
     faSignal: faSignal,
-    faSyncAlt:    faSyncAlt,
-    faLayerGroup:    faLayerGroup,
+    faSyncAlt: faSyncAlt,
+    faLayerGroup: faLayerGroup,
     faSitemap: faSitemap,
     faList: faList,
     faMoneyCheckAlt: faMoneyCheckAlt
 
-}
-
-const chartData = {
-    "Year 4": 0.8,
-    "Year 2": 0.2,
 }
 
 const chartStyle = {
@@ -74,30 +69,41 @@ export default ({ ...props }) => {
         return y
     }
 
+    let value1={};
+    value1.a1 = value;
+    value1.a2 = 1 - value;
+
     return (
         <Fragment>
             <div className="d-flex flex-row">
-            {prepend === "Bars" ? <Dough height="61" width="61" /> : 
-                <FontAwesomeIcon style={{
-                    "color": iconcol,
-                    "backgroundColor": bg,
-                    "borderStyle": "none",
-                    "borderRadius": "30px",
-                    "width": "60px",
-                    "height": "60px",
-                    "padding": "15px"
-                }}
-                    icon={awesomes[icon]} size="sm" />}
+                {prepend === "Bars"
+                    ? (value && <Dough
+                        data={[
+                            { region: '1', val: value },
+                            { region: '2', val: 1 - value },
+                        ]}
+                        height="61"
+                        width="61" />) :
+                    <FontAwesomeIcon style={{
+                        "color": iconcol,
+                        "backgroundColor": bg,
+                        "borderStyle": "none",
+                        "borderRadius": "30px",
+                        "width": "60px",
+                        "height": "60px",
+                        "padding": "15px"
+                    }}
+                        icon={awesomes[icon]} size="sm" />}
                 <div className={"d-flex flex-column ml-3 " + (!value && " mt-3")}>
                     <h5 className="font-weight-bolder"> {title} </h5>
-                    {loading 
-                    ? <LinearProgress  style={{
-                        "width": "100px",
-                        "height": "5px",
-                        "padding": "1px"
-                    }} /> 
-                    : 
-                    value && <h3 style={{"color": bg}}>{(!(prepend === "Bars") ? prepend : "") + value} </h3>}
+                    {loading
+                        ? <LinearProgress style={{
+                            "width": "100px",
+                            "height": "5px",
+                            "padding": "1px"
+                        }} />
+                        :
+                        value && <h3 style={{ "color": bg }}>{(!(prepend === "Bars") ? prepend : "") + value} </h3>}
                 </div>
             </div>
         </Fragment>

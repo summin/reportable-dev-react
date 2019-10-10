@@ -1,7 +1,17 @@
 
 import React, { useEffect } from 'react'
 import * as d3 from 'd3'
+const barxStyle = {
+    w: 600,
+    h: 400,
+    inrad: 0.4,
+    labels: true,
+    title: "Title",
+    yTitle: "yTitle",
+    xTitle: "xTitle",
+    source: "Source"
 
+}
 const barsX = ({ ...props }) => {
 
     const {style, data} = props
