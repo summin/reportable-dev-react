@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { userActions } from '../_actions'
+import { userActions, proposalActions, contractActions } from '../_actions'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import ContentViewCenter from './components/ContentViewCenter'
@@ -16,8 +16,7 @@ class HomePage extends React.Component {
         return (e) => this.props.deleteUser(id);
     }
 
-    render() {
-        console.log("HomePageRendered")
+    render() {        
         const { user, users, loggedIn } = this.props;
         return (
 
@@ -45,7 +44,9 @@ function mapState(state) {
 
 const actionCreators = {
     getUsers: userActions.getAll,
-    deleteUser: userActions.delete
+    deleteUser: userActions.delete,
+    getProposals: proposalActions.get,
+    getContracts: contractActions.get
 }
 
 const connectedHomePage = connect(mapState, actionCreators)(HomePage);

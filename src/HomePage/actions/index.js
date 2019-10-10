@@ -95,11 +95,10 @@ const saveContentSuccess = () => {
 }
 
 const saveContentAPI = () => dispatch => {
-    console.log(JSON.stringify(store.getState().content.content))
     return fetch(API_URL_SAVE + "?" + JSON.stringify(store.getState().content.content), {
     })
         .then((response) => response.text())
-        .then((response) => { console.log(response) });
+        .then((response) => {  });
 }
 
 

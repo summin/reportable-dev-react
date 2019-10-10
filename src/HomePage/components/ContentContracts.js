@@ -23,7 +23,6 @@ function ContentApprovals({ ...props }) {
     let columns = [];
 
     Object.keys(TableConfig).map((i) => {
-        console.log("a")
         columns.push({id: i, label: TableConfig[i].name})
     })
 
@@ -78,7 +77,6 @@ function ContentApprovals({ ...props }) {
     }
 
     const onClick = (e) => {
-        console.log(e.target.attributes.value)
     }
 
     return (

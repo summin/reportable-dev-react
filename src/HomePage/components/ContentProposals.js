@@ -113,7 +113,6 @@ function ContentApprovals({ ...props }) {
     }
 
     const onClick = (e) => {
-        console.log(e.target.attributes.value)
     }
 
     return (

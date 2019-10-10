@@ -40,7 +40,6 @@ function submit(contract) {
 
     return dispatch => {
         dispatch(request());
-        console.log(contract)
         contractService.submit(contract)
             .then(
                 res => {

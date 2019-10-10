@@ -16,7 +16,7 @@ export default ({ ...props }) => {
         <Fragment>
             <Col className="overflowscroll" lg={12}>
                 {!props.focus &&
-                    <ContentDashboard />}
+                    <ContentLanding />}
                 {props.focus == "submit" &&
                     <ContentForm />}
                 {props.focus == "messaging" &&

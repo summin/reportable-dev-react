@@ -3,7 +3,6 @@ import React, { Fragment, useEffect, useState } from 'react'
 import * as d3 from '../d3'
 
 const chartPie = ({ ...props }) => {
-    console.log(props.ID)
 
     const { data, style } = props;
 
