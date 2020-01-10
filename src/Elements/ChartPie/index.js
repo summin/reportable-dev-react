@@ -6,8 +6,24 @@ const chartPie = ({ ...props }) => {
 
     const { data, style } = props;
 
+    //const elements = document.getElementsByClassName('pieOne ' + props.ID);
+    //while(elements.length > 0){
+    //    console.log(elements[0])
+    //    elements[0].parentNode.removeChild(elements[0]);
+    //}
+//
+    //var div = document.createElement('div');
+    //div.classList.add("pieOne");
+    //div.classList.add(props.ID);
+    //document.body.appendChild(div)
+
+
+    // let text = document.createTextNode('pieOne ' + props.ID);
+    // div.appendChild(text);
+    // document.body.appendChild(div)
+
     var svg = d3.select(".pieOne." + props.ID)
-        .select("svg")
+        .append("svg")
         .append("g")
 
     svg.append("g")
@@ -152,9 +168,10 @@ const chartPie = ({ ...props }) => {
  const ChartPie = ({ ...props }) => {
     useEffect(() => chartPie(props))
     const [count, setCount] = useState(0);
+
     return (
         <Fragment>
-            <div className={"pieOne " + props.ID}><svg  /></div>
+            <div className={"pieOne " + props.ID}></div>
         </Fragment>
 
     )

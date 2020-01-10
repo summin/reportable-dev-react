@@ -7,12 +7,12 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import ChartPie from '../../Elements/ChartPie'
 import Bars from '../../Elements/Bars'
+import VisGraph from '../../Elements/VisGraph'
 import BarFullStacked from '../../Elements/DX/BarFullStacked'
 import Tip from './Primitives/Tip'
 import Jumbo from './Primitives/Jumbo'
 import { proposalActions } from '../../_actions'
 import { contractActions } from '../../_actions'
-
 
 const barsXdata = [
     {
@@ -213,9 +213,9 @@ const ContentDashboard = ({ ...props }) => {
         <Fragment>
             <Container>
                 <div style={{}}>
-                    <h1 class="display-4 font-weight-lighter text-center text-dark">Summary Dashboard</h1>
+                    <h3 class="font-weight-lighter text-left text-light">Summary Dashboard</h3>
 
-                    <Row className="mt-5">
+                    <Row className="mt-2">
 
                         <Col sm={4}>
                             <Tip title="AMOUNT OF CONTRACTS" type="lg" value={amountOfContracts()} prepend="" textType="cap" icon="faFileAlt" iconcol="white" bg="#51bfc4" loading={!amountOfContracts()} />
@@ -263,7 +263,7 @@ const ContentDashboard = ({ ...props }) => {
                             <ChartPie key={1} ID={"c"} data={chartData("byCategoryAmount", contracts)} style={chartStyle} /> </Col>
                         <Col lg={6}>
                             <Tip title="CONTRACTS BY CATEGORY" type="lg" prepend="$" textType="cap" icon="faSitemap" iconcol="#666699" bg loading={false} />
-                            <ChartPie key={1} ID={"d"} data={chartData("byCategory", contracts)} style={chartStyle} /> </Col>
+                            <VisGraph></VisGraph></Col>
                     </Row>
                     <Row>
                         <Col lg={6}>

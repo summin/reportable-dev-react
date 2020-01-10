@@ -75,7 +75,7 @@ export default ({ ...props }) => {
 
     return (
         <Fragment>
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row m-3">
                 {prepend === "Bars"
                     ? (value && <Dough
                         data={[
@@ -95,7 +95,7 @@ export default ({ ...props }) => {
                     }}
                         icon={awesomes[icon]} size="sm" />}
                 <div className={"d-flex flex-column ml-3 " + (!value && " mt-3")}>
-                    <h5 className="font-weight-bolder"> {title} </h5>
+                    <h6 className="font-weight-bolder" style={{"whiteSpace": "noWrap"}}> {title} </h6>
                     {loading
                         ? <LinearProgress style={{
                             "width": "100px",
@@ -103,7 +103,7 @@ export default ({ ...props }) => {
                             "padding": "1px"
                         }} />
                         :
-                        value && <h3 style={{ "color": bg }}>{(!(prepend === "Bars") ? prepend : "") + value} </h3>}
+                        value && <h6 style={{ "color": bg }}>{(!(prepend === "Bars") ? prepend : "") + value} </h6>}
                 </div>
             </div>
         </Fragment>
