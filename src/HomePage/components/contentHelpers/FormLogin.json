@@ -1,0 +1,22 @@
+{
+    "username": {
+        "name": "Nutzername",
+        "prepend": "",
+        "w": 12,
+        "type": "text",
+        "options": "",
+        "gr": 1,
+        "xgr": 1,
+        "comments": "Nutzername"
+    },
+    "password": {
+        "name": "Kennwort",
+        "prepend": "",
+        "w": 12,
+        "type": "text",
+        "options": "",
+        "gr": 1,
+        "xgr": 1,
+        "comments": ""
+    }
+}

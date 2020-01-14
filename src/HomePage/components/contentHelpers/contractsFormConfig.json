@@ -1,4 +1,14 @@
 {
+    "dbCostRequestReference": {
+        "name": "Cost Request Reference",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 20,
+        "xgr": 1,
+        "comments": "Auto-populated from Active/Group Directory"
+    },
     "dbUniqueReferenceNumber": {
         "name": "Unique Reference Number",
         "prepend": "",
@@ -29,16 +39,7 @@
         "xgr": 1,
         "comments": "Auto-populated from Active/Group Directory"
     },
-    "dbCostRequestReference": {
-        "name": "Cost Request Reference",
-        "prepend": "",
-        "w": 6,
-        "type": "text",
-        "options": "",
-        "gr": 20,
-        "xgr": 1,
-        "comments": "Auto-populated from Active/Group Directory"
-    },
+
     "dbUniqueBudgetline": {
         "name": "Unique Budget line",
         "prepend": "",

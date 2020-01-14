@@ -1,0 +1,42 @@
+{
+    "firstName": {
+        "name": "Vorname",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 1,
+        "xgr": 1,
+        "comments": ""
+    },
+    "lastName": {
+        "name": "Nachname",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 1,
+        "xgr": 1,
+        "comments": ""
+    },
+    "username": {
+        "name": "Nutzername",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 2,
+        "xgr": 1,
+        "comments": ""
+    },
+    "password": {
+        "name": "Kennwort",
+        "prepend": "",
+        "w": 6,
+        "type": "text",
+        "options": "",
+        "gr": 2,
+        "xgr": 1,
+        "comments": ""
+    }
+}
