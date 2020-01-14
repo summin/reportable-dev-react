@@ -2,17 +2,17 @@
     "dbCostRequestReference": {
         "name": "Cost Request Reference",
         "prepend": "",
-        "w": 6,
+        "w": 3,
         "type": "text",
         "options": "",
-        "gr": 20,
+        "gr": 10,
         "xgr": 1,
         "comments": "Auto-populated from Active/Group Directory"
     },
     "dbUniqueReferenceNumber": {
         "name": "Unique Reference Number",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 10,
@@ -22,7 +22,7 @@
     "dbSupplierID": {
         "name": "Supplier ID",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 10,
@@ -32,18 +32,17 @@
     "dbContractReferenceNumber": {
         "name": "Contract Reference Number",
         "prepend": "",
-        "w": 4,
+        "w": 3,
         "type": "text",
         "options": "",
         "gr": 10,
         "xgr": 1,
         "comments": "Auto-populated from Active/Group Directory"
     },
-
     "dbUniqueBudgetline": {
         "name": "Unique Budget line",
         "prepend": "",
-        "w": 6,
+        "w": 4,
         "type": "text",
         "options": "",
         "gr": 20,

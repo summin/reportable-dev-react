@@ -117,10 +117,8 @@ function ContentApprovals({ ...props }) {
 
     return (
         <Fragment>
-
-            <Paper className={classes.root}>
                 <div className={classes.tableWrapper}>
-                    <Table stickyHeader>
+                    <Table>
                         {!list 
                         ?
                         <div className={classes.root}>
@@ -133,7 +131,8 @@ function ContentApprovals({ ...props }) {
                                     <TableCell
                                         key={column.id}
                                         align={column.align}
-                                        style={{ minWidth: column.minWidth }}
+                                        style={{ minWidth: column.minWidth,
+                                            'color': "rgb(153, 156, 156)"}}
                                     >
                                         {column.label}
                                     </TableCell>
@@ -147,7 +146,7 @@ function ContentApprovals({ ...props }) {
                                         {columns.map(column => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell className="cursorHand" key={column} value={row.dbContractReferenceNumber} align={column.align}>
+                                                <TableCell className="cursorHand" style={{'color': "rgb(153, 156, 156)"}} key={column} value={row.dbContractReferenceNumber} align={column.align}>
                                                     {column.format && typeof value === 'number' ? column.format(value) : value}
                                                     
                                                 </TableCell>
@@ -177,7 +176,6 @@ function ContentApprovals({ ...props }) {
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
-            </Paper>
         </Fragment>
     );
 }

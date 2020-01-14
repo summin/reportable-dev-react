@@ -1,158 +1,123 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { contractActions } from '../../_actions'
-import TableConfig from './contentHelpers/contractsFormConfig.json'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
+import Table from 'react-bootstrap/Table'
+import Form from 'react-bootstrap/Form'
+import FormControl from 'react-bootstrap/FormControl'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
+import FormMain from './Primitives/FormMain'
+import TableEditable from './Primitives/TableEditable'
+import formContractsConfig from './contentHelpers/contractsEditFormConfig.json'
+import formContractsEditConfig from './contentHelpers/contractsEditFormConfig.json'
+import contractsTable from './contentHelpers/contractsTable.json'
+import { contractActions, alertActions } from '../../_actions'
 
+const Contracts = ({ ...props }) => {
 
-function ContentApprovals({ ...props }) {
+    const [tab, setTab] = useState("recentContracts")
+    const [title, setTitle] = useState()
+    const {
+        focus,
+        submit,
+        get,
+        modify,
+        clear,
+        contracts
+    } = props;
 
-    const { user, alert, proposals, contracts } = props;
-    const list = contracts.contracts;
-
-    TableConfig
-
-    let columns = [];
-
-    Object.keys(TableConfig).map((i) => {
-        columns.push({id: i, label: TableConfig[i].name})
-    })
-
-
-    function createData({...a}) {
-        return a;
-    }
-
-    !list && props.get("");
-
-    const rows = [];
-
-    list && list.map((i) => {
-        rows.push(
-            createData(i)
-        )
-    })
-
-    const useStyles = makeStyles({
-        root: {
-            width: '100%',
-            flexGrow: 1,
-            marginBottom: '70px',
-            marginTop: '5px'
-        },
-        tableWrapper: {
-            maxHeight: "100%",
-            overflow: 'auto',
-            cursor: 'pointer'
-        },
-        pagination: {
-            width: '100%',
-            position: 'fixed',
-            bottom: '0',
-            right: '0',
-            backgroundColor: "rgb(133, 126, 126)"
-        },
-        
-    });
-
-    const classes = useStyles();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(20);
-
-    function handleChangePage(event, newPage) {
-        setPage(newPage);
-    }
-
-    function handleChangeRowsPerPage(event) {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    }
+    !contracts && get("")
 
     const onClick = (e) => {
+        setTab(e.target.value)
+        console.log(e.target.value)
+        setTitle(e.target.value ==
+        "recentContracts" ? "Last 10 Approved Contracts" : e.target.value ==
+        "newCustomer" ? "Hinzufügen" : "")
+        e.target.value == "recentContracts" && get("")
+        clear()
     }
 
-    return (
-        <Fragment>
+    const editEntry = (id) => {
+        setTab("editContract")
+        setTitle("Edit")
+        get(id)
+    }
 
-            <Paper className={classes.root}>
-                <div className={classes.tableWrapper}>
-                    <Table stickyHeader>
-                        {!list 
-                        ?
-                        <div className={classes.root}>
-                            <LinearProgress color="primary" />
-                        </div>
-                        :
-                        <TableHead  className="cursorDefault">
-                            <TableRow>
-                                {columns.map(column => (
-                                    <TableCell
-                                        key={column.id}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>}
-                        <TableBody>
-                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
-                                return (
-                                    <TableRow  onClick={onClick} hover role="checkbox" tabIndex={-1}>
-                                        {columns.map(column => {
-                                            const value = row[column.id];
-                                            return (
-                                                <TableCell className="cursorHand" key={column.id} value={row.dbContractReferenceNumber}>
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
-                                                    
-                                                </TableCell>
-                                                
-                                            );
-                                        })}
-                                    </TableRow>
-                                
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </div>
-                <TablePagination
-                    className={classes.pagination}
-                    rowsPerPageOptions={[10, 20, 200]}
-                    component="div"
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    backIconButtonProps={{
-                        'aria-label': 'previous page',
-                    }}
-                    nextIconButtonProps={{
-                        'aria-label': 'next page',
-                    }}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                />
-            </Paper>
-        </Fragment>
+    const handleSearch = (e) => {
+        setTab("searchContracts")
+        setTitle("Search")
+        e.preventDefault()
+        get(e.target[1].selectedOptions[0].value + "=" + e.target[0].value)
+    }
+
+
+    return (
+        <Container>
+            <Row  className="mt-0 bg-dark stickyRow">
+
+                <Button className="m-2" onClick={onClick} value="recentContracts" size="sm" variant="dark">Recently Approved</Button>
+                <Button className="m-2" onClick={onClick} value="top20" size="sm" variant="dark">Top 20</Button>
+                <Button className="m-2" onClick={onClick} value="needsAttention" size="sm" variant="dark">Need Attention</Button>
+
+                <Form className="m-2 ml-auto" inline onSubmit={handleSearch}>
+                    <InputGroup>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2 bg-dark" />
+
+                        <InputGroup.Text className="p-0 px-2 bg-dark" id="inputGroupPrepend">
+                            by:
+                            <Form.Control className="h-75 p-0 m-0 bg-dark" as="select">
+                                <option value="lastName">Nachname</option>
+                                <option value="ref">AR Ref</option>
+                            </Form.Control>
+                        </InputGroup.Text>
+
+                        <Button size="sm" variant="dark" type="submit">Search</Button>
+                    </InputGroup>
+                </Form>
+
+            </Row>
+            <h3 className="text-center"> {title} </h3>
+
+            {tab == "newContract" &&
+            <FormMain
+                formFields={formContractsConfig}
+                formData=""
+                loading=""
+                buttonName="submit Proposal"
+                onSubmit={submit} />}
+
+            {tab == "editContract" &&
+            <FormMain
+                formFields={formContractsEditConfig}
+                formData={contracts.entries && contracts.entries[0]}
+                loading=""
+                buttonName="Edit"
+                onSubmit={modify} />}
+
+            {tab == "recentContracts" &&
+            <TableEditable entries={contracts} editEntry={editEntry} config={contractsTable}/>
+            }
+            {tab == "searchContracts" &&
+            <TableEditable entries={contracts} editEntry={editEntry} />
+            }
+        </Container>
     );
 }
 
-const mapsStateToProps = (state) => {
-    const { alert, proposals, contracts } = state;
-    const { user } = state.authentication;
-    return { user, alert, proposals, contracts }
+function mapState(state) {
+    const { focus } = state.content
+    const { contracts } = state.contracts
+    return { focus, contracts }
 }
 
 const actionCreators = {
-
+    submit: contractActions.submit,
     get: contractActions.get,
+    modify: contractActions.modify,
+    clear: alertActions.clear
 };
 
-export default connect(mapsStateToProps, actionCreators)(ContentApprovals)
+const connectedContracts= connect(mapState, actionCreators)(Contracts);
+export default connectedContracts;

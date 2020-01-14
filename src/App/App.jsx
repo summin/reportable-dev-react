@@ -23,7 +23,7 @@ class App extends React.Component {
         const { alert } = this.props;
         return (
             <Router history={history}>
-                <div>
+                <div className = 'overflow-hidden'>
                     <Header />
                     <PrivateRoute exact path="/" component={HomePage} />
                         <Route path="/login" component={LoginPage} />

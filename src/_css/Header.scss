@@ -1,17 +1,13 @@
 .header {
-    color: #0faf;
     font-size: 15px;
 }
 
-.nav-item a {
-    color: black !important;
-}
-
-.nav a {
-    color: black !important;
+.navImage {
+    filter: invert(70%);
 }
 
 .navbar button {
+
     font-weight: 600 !important;
 }
 
@@ -21,7 +17,7 @@
     }
 
     .dropdown.nav-item {
-        position: absolute;
+        color: white;
         right: 0;
         top: 0;
     }
@@ -37,4 +33,6 @@
         flex-direction: column;
         margin: 0 0 3px 0;
     }
+
+    .navbar :nth-child(3) { order: 2; }
 }

@@ -32,7 +32,6 @@ export default () => {
                 </Row>
             </div>
         </Fragment>
-
     )
 }
 

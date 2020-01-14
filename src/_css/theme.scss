@@ -1,5 +1,5 @@
-$body-bg: rgb(36, 44, 53);
-$body-color: rgb(161, 196, 184);
+$body-bg: rgb(39, 20, 42);
+$body-color: rgb(159, 193, 140);
 $input-bg:  $body-bg;
 $input-color: $body-color;
 $input-disabled-bg: $body-bg;
@@ -7,6 +7,12 @@ $custom-control-indicator-bg: $input-bg;
 $input-group-addon-bg: $body-bg; 
 $input-border-color: black;
 $input-focus-bg: grey;
+$dark: $body-bg;
+$input-focus-color: black;
+
+
+$input-btn-font-size-sm: 0.75rem;
+$input-btn-line-height-sm: 0.5;
 
 * {
     box-sizing: border-box;
@@ -16,9 +22,15 @@ body,
 html {
     padding: 0;
     margin: 0;
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 0px;
     
+}
+
+.stickyRow {
+    position: sticky;
+    top: 0px;
+    z-index: 40;
 }
 
 @media (max-width: 575px) {
@@ -29,6 +41,10 @@ html {
 
 .first-caps {
     text-transform: capitalize;
+}
+
+.contentHeight {
+    height: calc(95vh);
 }
 
 .navbtngroup {
@@ -59,4 +75,3 @@ html {
 .smaller {
     transform: scale(0.5);
 }
-

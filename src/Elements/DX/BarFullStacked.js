@@ -4,9 +4,11 @@ import {
     ArgumentAxis,
     ValueAxis,
     BarSeries,
-    Title,
-    Legend,
+    Legend
 } from './dx-react-chart-bootstrap4.es.js';
+import {
+
+} from '@devexpress/dx-react-chart-material-ui';
 import { Stack, Animation } from '@devexpress/dx-react-chart';
 import { stackOffsetExpand } from 'd3-shape';
 
@@ -60,7 +62,6 @@ const Root = props => (
             <ValueAxis
               tickFormat={format}
             />
-  
             <BarSeries
               name="Cost"
               valueField="totalC"
@@ -76,7 +77,6 @@ const Root = props => (
               valueField="totalH"
               argumentField="year"
             />
-        
             <Animation />
             <Legend position="bottom" rootComponent={Root} />
             <Stack

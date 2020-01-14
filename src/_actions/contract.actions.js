@@ -1,20 +1,44 @@
 import { contractConstants } from '../_constants';
-import { contractService } from '../_services';
-import { alertActions } from './';
+import { contractsService } from '../_services';
+import { alertActions } from '.';
 import { history } from '../_helpers';
 
 export const contractActions = {
     submit,
+    modify,
     get
 };
 
-// get
+function submit(contracts) {
+
+    return dispatch => {
+        dispatch(request());
+        contractsService.submit(contracts)
+            .then(
+                res => {
+                    dispatch(success(res));
+                    dispatch(alertActions.clear());
+                    dispatch(alertActions.success(`Contract ${""} Submitted`));
+                },
+
+                error => {
+                    dispatch(failure(error.toString())),
+                        dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request() { return { type: contractConstants.SUBMIT_REQUEST, contracts } }
+    function success(contracts) { return { type: contractConstants.SUBMIT_SUCCESS, contracts } }
+    function failure(error) { return { type: contractConstants.SUBMIT_FAILURE, error } }
+}
 
 function get(attr) {
     return dispatch => {
+
         dispatch(request());
 
-        contractService.get(attr)
+        contractsService.get(attr)
             .then(
                 res => {
                     dispatch(success(res));
@@ -24,7 +48,7 @@ function get(attr) {
 
                 error => {
                     dispatch(failure(error.toString())),
-                    dispatch(alertActions.error(error.toString()));
+                        dispatch(alertActions.error(error.toString()));
                 }
             );
     };
@@ -34,28 +58,31 @@ function get(attr) {
     function failure(error) { return { type: contractConstants.GET_FAILURE, error } }
 }
 
-// SUBMIT
-
-function submit(contract) {
-
+function modify(contracts) {
     return dispatch => {
+
         dispatch(request());
-        contractService.submit(contract)
+
+        contractsService.modify(contracts)
             .then(
                 res => {
                     dispatch(success(res));
                     dispatch(alertActions.clear());
-                    dispatch(alertActions.success(`contract N° ${contract.dbContractReferenceNumber} Submitted`));
+                    dispatch(alertActions.success(`Successfully Modified`));
                 },
 
                 error => {
                     dispatch(failure(error.toString())),
-                    dispatch(alertActions.error(error.toString()));
+                        dispatch(alertActions.error(error.toString()));
                 }
             );
     };
 
-    function request() { return { type: contractConstants.SUBMIT_REQUEST, contract } }
-    function success(contract) { return { type: contractConstants.SUBMIT_SUCCESS, contract } }
-    function failure(error) { return { type: contractConstants.SUBMIT_FAILURE, error } }
+    function request() { return { type: contractConstants.MODIFY_REQUEST } }
+    function success(res) { return { type: contractConstants.MODIFY_SUCCESS, res } }
+    function failure(error) { return { type: contractConstants.MODIFY_FAILURE, error } }
 }
+
+
+// SUBMIT
+

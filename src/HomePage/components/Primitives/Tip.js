@@ -75,7 +75,7 @@ export default ({ ...props }) => {
 
     return (
         <Fragment>
-            <div className="d-flex flex-row m-3">
+            <div className="d-flex flex-row mt-2">
                 {prepend === "Bars"
                     ? (value && <Dough
                         data={[

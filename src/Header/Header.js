@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
 import * as b from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -27,7 +26,7 @@ const navStyle = {
 }
 
 const navlogoStyle = {
-    height: '22px',
+    height: '25px',
 }
 
 
@@ -43,12 +42,14 @@ class Header extends Component {
     }
     
     render() {
+
+        const focus = this.props.focus;
         return (
 
             <Navbar
-                bg="secondary"
+                bg="dark"
                 expand="md"
-                className="header fixed-top m-0 p-0"
+                className="d-flex header fixed-top m-0 p-0 border-bottom"
                 style={navStyle}>
                 <button
                     onClick={this.props.expand}
@@ -63,8 +64,8 @@ class Header extends Component {
                 </button>
 
                 <Navbar.Brand>
-                    <b.Image href="#home"
-                        className="ml-1 pt-0"
+                    <img href="#home"
+                        className="ml-1 pt-0 navImage"
                         src={navlogo}
                         style={navlogoStyle} />
                 </Navbar.Brand>
@@ -73,7 +74,7 @@ class Header extends Component {
                         <div className="navbtngroup">
                             <Button
                                 key={cuid()}
-                                className="ml-1 mr-1 navbtn"
+                                className={(focus=="submit" && "border-bottom-0") + " border ml-1 mr-1 navbtn"}
                                 variant="nav-btn"
                                 size="sm"
                                 value="submit"
@@ -82,7 +83,7 @@ class Header extends Component {
                             </Button>
                             <Button
                                 key={cuid()}
-                                className="ml-1 mr-1 navbtn"
+                                className={(focus=="proposals" && "border-bottom-0") + " border ml-1 mr-1 navbtn"}
                                 variant="nav-btn"
                                 size="sm"
                                 value="proposals"
@@ -91,7 +92,7 @@ class Header extends Component {
                             </Button>
                             <Button
                                 key={cuid()}
-                                className="ml-1 mr-1 navbtn"
+                                className={(focus=="contracts" && "border-bottom-0") + " border ml-1 mr-1 navbtn"}
                                 variant="nav-btn"
                                 size="sm"
                                 value="contracts"
@@ -100,7 +101,7 @@ class Header extends Component {
                             </Button>
                             <Button
                                 key={cuid()}
-                                className="ml-1 mr-1 navbtn"
+                                className={(focus=="dashboard" && "border-bottom-0") + " border ml-1 mr-1 navbtn"}
                                 variant="nav-btn"
                                 size="sm"
                                 value="dashboard"
@@ -113,6 +114,7 @@ class Header extends Component {
                 }
                 {this.props.authenticated &&
                     <NavDropdown
+                        bg='dark'
                         title={
                             <div className="d-inline-flex align-items-center">
                                 <div className="mr-2">{this.props.user.firstName + " " + this.props.user.lastName.charAt(0) + "."}</div>
@@ -134,6 +136,7 @@ const mapStateToProps = (state) => {
     const authenticated = state.authentication.loggedIn
     const user = state.authentication.user
     const collapse = state.content.collapse
+    const focus = state.content.focus
     return { authenticated, user, focus, collapse }
 }
 

@@ -1,0 +1,65 @@
+{
+  "dbUniqueReferenceNumber": {
+    "name": "Reference Number",
+    "prepend": "",
+    "w": 6,
+    "type": "text",
+    "options": "",
+    "gr": 20,
+    "xgr": 1,
+    "comments": "Auto-populated from Active/Group Directory"
+  },
+  "dbSupplierID": {
+    "name": "Supplier ID",
+    "prepend": "",
+    "w": 4,
+    "type": "text",
+    "options": "",
+    "gr": 10,
+    "xgr": 1,
+    "comments": "Auto-populated from Active/Group Directory"
+  },
+  "dbContractReferenceNumber": {
+    "name": "Contract Reference Number",
+    "prepend": "",
+    "w": 4,
+    "type": "text",
+    "options": "",
+    "gr": 10,
+    "xgr": 1,
+    "comments": "Auto-populated from Active/Group Directory"
+  },
+  "dbVendorname": {
+    "name": "Vendor name",
+    "prepend": "",
+    "w": 6,
+    "type": "text",
+    "options": "",
+    "gr": 40,
+    "xgr": 1,
+    "weak": true,
+    "comments": "Auto-populated on the day of initial request"
+  },
+  "dbSpendCategory": {
+    "name": "Spend Category",
+    "prepend": "",
+    "w": 6,
+    "type": "text",
+    "options": "",
+    "gr": 40,
+    "xgr": 1,
+    "weak": true,
+    "comments": "Linked to the contract database - ability to insert new reference should be an option (for entering new relationships"
+  },
+  "dbContractStartDate": {
+    "name": "Contract Start Date",
+    "prepend": "",
+    "w": 3,
+    "type": "text",
+    "options": "",
+    "gr": 50,
+    "xgr": 1,
+    "weak": true,
+    "comments": "Commodity category of spend which is aligned to given IT owners - Enterprise Services, Telecoms etc."
+  }
+}

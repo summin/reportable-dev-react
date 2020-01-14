@@ -19,18 +19,13 @@ class HomePage extends React.Component {
     render() {        
         const { user, users, loggedIn } = this.props;
         return (
-
-            <Fragment>
+            <Container className=' border  overflow-auto contentHeight'  fluid>
                 {loggedIn &&
                     <Fragment>
-                        <Container fluid>
-                            <Row className="mt-1">
-                                <ContentViewCenter focus={this.props.focus}/>
-                            </Row>
-                        </Container>
+                        <ContentViewCenter focus={this.props.focus}/>
                     </Fragment>
                 }
-            </Fragment>
+            </Container>
         );
     }
 }

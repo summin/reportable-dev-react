@@ -25,10 +25,10 @@
   padding: $dropdown-padding-y 0;
   margin: $dropdown-spacer 0 0; // override default ul
   @include font-size($dropdown-font-size);
-  color: $dropdown-color;
+  color: $body-color;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   list-style: none;
-  background-color: $dropdown-bg;
+  background-color: $body-bg;
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($dropdown-border-radius);
@@ -126,7 +126,7 @@
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   clear: both;
   font-weight: $font-weight-normal;
-  color: $dropdown-link-color;
+  color: $body-color;
   text-align: inherit; // For `<button>`s
   white-space: nowrap; // prevent links from randomly breaking onto new lines
   background-color: transparent; // For `<button>`s
@@ -179,7 +179,7 @@
   padding: $dropdown-padding-y $dropdown-item-padding-x;
   margin-bottom: 0; // for use with heading elements
   @include font-size($font-size-sm);
-  color: $dropdown-header-color;
+  color: $body-color;
   white-space: nowrap; // as with > li > a
 }
 
@@ -187,5 +187,5 @@
 .dropdown-item-text {
   display: block;
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
-  color: $dropdown-link-color;
+  color: $body-color;
 }

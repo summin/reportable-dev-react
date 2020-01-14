@@ -5,7 +5,7 @@ import { users } from './users.reducer';
 import { proposals } from './proposals.reducer';
 import { contracts } from './contracts.reducer';
 import { alert } from './alert.reducer';
-import { content, header, footer } from '../HomePage/reducers'
+import { content, nav } from './content.reducer'
 
 
 const rootReducer = combineReducers({
@@ -15,9 +15,8 @@ const rootReducer = combineReducers({
   proposals,
   contracts,
   alert,
-  content, 
-  header, 
-  footer
+  content,
+  nav
 });
 
 export default rootReducer;

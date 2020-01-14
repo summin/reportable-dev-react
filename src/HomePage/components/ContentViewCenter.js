@@ -3,26 +3,25 @@ import { Fragment } from 'react';
 import Col from 'react-bootstrap/Col'
 import ContentForm from './ContentForm'
 import ContentProposals from './ContentProposals'
-import ContentContracts from './ContentContracts'
+import Contracts from './ContentContracts'
 import ContentDashboard from './ContentDashboard'
 import ContentLanding from './ContentLanding'
 import ContentConfig from './ContentConfig'
+import ContentDevelopment from './ContentDevelopment'
 
 export default ({ ...props }) => {
     const { user, users } = props
 
     return (
-
         <Fragment>
-            <Col className="overflowscroll" lg={12}>
-                {!props.focus &&
+                {props.focus == "landing" &&
                     <ContentLanding />}
                 {props.focus == "submit" &&
                     <ContentForm />}
                 {props.focus == "messaging" &&
                     <ContentMessaging />}
                 {props.focus == "contracts" &&
-                    <ContentContracts />}
+                    <Contracts />}
                 {props.focus == "proposals" &&
                     <ContentProposals />}
                 {props.focus == "calendar" &&
@@ -33,7 +32,8 @@ export default ({ ...props }) => {
                     <ContentDashboard />}
                 {props.focus == "config" &&
                     <ContentConfig />}
-            </Col>
+                {props.focus == "development" &&
+                    <ContentDevelopment />}
         </Fragment>
     )
 }

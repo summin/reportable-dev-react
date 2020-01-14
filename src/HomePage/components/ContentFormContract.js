@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button'
 import Textarea from 'react-textarea-autosize'
 import cuid from 'cuid'
 import { proposalActions } from '../../_actions'
-import FormConfig from './contentHelpers/contractsFormConfig.json'
+import FormConfig from './contentHelpers/contractsFormConfig'
 import Spinner from 'react-bootstrap/Spinner'
 
 const FormPanel = ({ ...props }) => {

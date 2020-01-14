@@ -9,7 +9,9 @@ export const nav = (state = {}, action) => {
     }
 }
 
-export const content = (state = {}, action) => {
+export const content = (state = {
+    focus: "landing"
+}, action) => {
     switch (action.type) {
         case contentConstants.NAV_EXPAND:
             return {

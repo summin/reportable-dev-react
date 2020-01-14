@@ -1,14 +1,13 @@
 
 import React, { Component, Fragment, PureComponent, useState } from 'react';
 import { connect } from 'react-redux'
+import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Alert from 'react-bootstrap/Alert'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
-import Textarea from 'react-textarea-autosize'
-import cuid from 'cuid'
 import { proposalActions } from '../../_actions'
 import FormConfig from './contentHelpers/submitFormConfig.json'
 import Spinner from 'react-bootstrap/Spinner'
@@ -18,7 +17,6 @@ const FormPanel = ({ ...props }) => {
     let { alert, validated, proposals } = props
 
     return (
-        <Fragment>
             <Row className="mt-1" key={"1a"}>
                 <Col md={10} key={"2a"}>
                     <Alert className="d-flex justify-content-between" variant={validated ? "danger" : alert.type ? alert.type : "primary"} size="md">
@@ -34,7 +32,6 @@ const FormPanel = ({ ...props }) => {
                     </div>
                 </Col>
             </Row>
-        </Fragment>
     )
 }
 
@@ -115,8 +112,9 @@ const FormSubmit = ({ ...props }) => {
     }
 
     return (
+        <Container>
+            <h3 className="font-weight-lighter text-left text-light">Submit proposal</h3>
         <Form className="mb-4 pb-4" noValidate validated={validated} onSubmit={handleSubmit}>
-
             <FormPanel
                 alert={alert}
                 validated={validated}
@@ -169,6 +167,7 @@ const FormSubmit = ({ ...props }) => {
                 </Form.Row>
             ))}
         </Form>
+        </Container>
     );
 
 }
