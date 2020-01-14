@@ -9,38 +9,8 @@ import Pie from '../../Elements/DX/Pie'
 import Tip from './Primitives/Tip'
 import Jumbo from './Primitives/Jumbo'
 import {proposalActions} from '../../_actions'
-import {contractActions} from '../../_actions'
+import {dashboardActions} from '../../_actions'
 
-const barsXdata = [
-    {
-        language: 'Rust',
-        value: 78.9,
-        color: '#000000'
-    },
-    {
-        language: 'Kotlin',
-        value: 75.1,
-        color: '#00a2ee'
-    },
-    {
-        language: 'Python',
-        value: 68.0,
-        color: '#fbcb39'
-    }
-];
-
-const barsXdata1 = [
-    {
-        language: 'Rust',
-        value: 78.9,
-        color: '#000000'
-    },
-    {
-        language: 'Python',
-        value: 68.0,
-        color: '#fbcb39'
-    }
-];
 
 const chartStyle = {
     w: 570,
@@ -53,15 +23,13 @@ let barsData = [Math.floor(Math.random() * 100)]
 
 const ContentDashboard = ({...props}) => {
 
-    useEffect(() => {
-        props.getContracts("")
-        props.getProposals("")
-    })
+    // TODO change contracts to dashboard from this point and beyond
 
-
-    const {user, alert} = props;
-    const contracts = props.contracts.contracts
+    const contracts = props.dashboard.dashboard;
     const proposals = props.proposals.proposals;
+
+    !contracts && props.getDashboard("")
+    !proposals && props.getProposals("")
 
     const amountOfProposals = () => {
         return proposals ? proposals.length : ""
@@ -386,20 +354,20 @@ const ContentDashboard = ({...props}) => {
             </Container>
         </Fragment>
 
-)
+    )
 }
 
 
 const mapsStateToProps = (state) => {
-    const {alert, proposals, contracts} = state;
+    const {alert, proposals, dashboard} = state;
     const {user} = state.authentication;
-    return {user, alert, proposals, contracts}
+    return {user, alert, proposals, dashboard}
 }
 
 const actionCreators = {
 
     getProposals: proposalActions.get,
-    getContracts: contractActions.get
+    getDashboard: dashboardActions.get
 };
 
 export default connect(mapsStateToProps, actionCreators)(ContentDashboard)

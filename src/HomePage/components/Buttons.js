@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import cuid from 'cuid'
-import {getContentFocus} from '../actions'
 
 const buttons = ({ ...props }) => {
 

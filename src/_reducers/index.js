@@ -5,6 +5,7 @@ import { users } from './users.reducer';
 import { proposals } from './proposals.reducer';
 import { contracts } from './contracts.reducer';
 import { alert } from './alert.reducer';
+import { dashboard } from './dashboard.reducer';
 import { content, nav } from './content.reducer'
 
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   proposals,
   contracts,
   alert,
+  dashboard,
   content,
   nav
 });

@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import * as b from 'react-bootstrap'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button'
 import navlogo from '../_media/images/logo.png'
 import cuid from 'cuid'
 import { userActions, getContentFocus, expandNav } from '../_actions';
-import { } from '../_actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faUserCircle,
@@ -26,7 +24,7 @@ const navStyle = {
 }
 
 const navlogoStyle = {
-    height: '25px',
+    height: '22px',
 }
 
 
