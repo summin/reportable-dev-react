@@ -20,7 +20,9 @@ export default () => {
                     </Col>
                     <Col sm={4}></Col>
                 </Row>
-                <h1 className="text-center display-3 font-weight-lighter">proposals management and analytics console</h1>
+                <h1 className="text-center display-3 font-weight-lighter">allotment automation
+                    
+                </h1>
                 <Row>
                     <Col sm={3}></Col>
                     <Col sm={6} className="persp100px">
