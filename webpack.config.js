@@ -19,8 +19,12 @@ const config = {
     },
     devServer: {
         publicPath: '/',
+        contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true,
-        port: 8080
+        host: '0.0.0.0',
+        port: 8080,
+        open: true,
+        public: 'localhost:8280'
       },
 
     resolve: {
@@ -80,7 +84,7 @@ const config = {
     externals: {
         myApp: 'myApp',
         config: JSON.stringify({
-            apiUrl: 'http://localhost:4000'
+            apiUrl: 'http://host.docker.internal:4000'
         })
     },
     plugins: [
