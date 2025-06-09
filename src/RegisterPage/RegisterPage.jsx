@@ -7,7 +7,7 @@ import { userActions } from '../_actions';
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             user: {
                 firstName: '',

@@ -84,7 +84,7 @@ const config = {
     externals: {
         myApp: 'myApp',
         config: JSON.stringify({
-            apiUrl: 'http://host.docker.internal:4000'
+            apiUrl: 'http://localhost:4000'
         })
     },
     plugins: [
