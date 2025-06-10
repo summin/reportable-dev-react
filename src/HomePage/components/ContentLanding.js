@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import navlogo from '../../_media/images/logo.png'
-import landingFXForm from '../../_media/images/landingFXForm.png'
+import landingFXForm from '../../_media/images/logo2.png'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import ReactDOM from 'react-dom';
@@ -13,10 +13,13 @@ export default () => {
                 <Row className = "mt-5">
                     <Col sm={4}></Col>
                     <Col sm={4}>
-                        <figure className="figure" block>
-                            <img src={navlogo} className="figure-img img-fluid  rounded" alt="..." />
+                        <figure className="figure" block style={{ 
+                            backgroundColor: '#a3a363', 
+                            padding: '10px', 
+                            borderRadius: '8px',
+                            }}>
+                            <img src={navlogo} className="figure-img img-fluid rounded" alt="..." />
                         </figure>
-
                     </Col>
                     <Col sm={4}></Col>
                 </Row>

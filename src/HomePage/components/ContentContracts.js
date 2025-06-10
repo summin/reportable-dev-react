@@ -26,7 +26,6 @@ function ContentApprovals({ ...props }) {
         columns.push({id: i, label: TableConfig[i].name})
     })
 
-
     function createData({...a}) {
         return a;
     }
